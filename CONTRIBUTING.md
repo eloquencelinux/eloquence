@@ -45,3 +45,6 @@ make build-iso-arm64
 - Ensure your code adheres to Python PEP 8 style standards.
 - Keep commits atomic with descriptive commit messages (following Conventional Commits e.g. `feat:`, `fix:`, `docs:`).
 - Verify that both `make test` and `make lint` complete without errors.
+
+---
+*Last updated: 29 October 2025*
