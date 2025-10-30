@@ -1,134 +1,303 @@
-<div align="center">
+# Eloquence GNU/Linux
 
-# ⚡ Eloquence GNU/Linux 2026.1
+Production-grade, Debian-based Linux operating system engineered for enterprise workstations, developers, and dual-architecture deployments across x86_64 and ARM64 platforms — featuring the Cinnamon Desktop Environment, Calamares graphical installer, Plymouth animated boot framework, and a pre-installed productivity software suite.
 
-### *Modern, Secure & Enterprise-Ready Operating System*
-
-[![Debian Base](https://img.shields.io/badge/Debian-Trixie%20Core-E63946?style=for-the-badge&logo=debian&logoColor=white)](https://www.debian.org)
-[![Desktop](https://img.shields.io/badge/Desktop-Cinnamon-457B9D?style=for-the-badge&logo=linuxmint&logoColor=white)](https://projects.linuxmint.com/cinnamon/)
-[![Architecture](https://img.shields.io/badge/Architecture-x86__64%20%7C%20ARM64-F4A261?style=for-the-badge&logo=arm&logoColor=white)]()
-[![Installer](https://img.shields.io/badge/Installer-Calamares%20GUI-2A9D8F?style=for-the-badge)]()
-[![Containerized](https://img.shields.io/badge/Docker-Ready%20Builds-264653?style=for-the-badge&logo=docker&logoColor=white)](docker-compose.yml)
-[![License](https://img.shields.io/badge/License-GPLv3-1D3557?style=for-the-badge)](LICENSE)
-
-<br/>
-
-**Eloquence GNU/Linux** is an independent, highly refined, professional Linux operating system engineered for software developers, system administrators, creative professionals, and power users. Combining the rock-solid stability of Debian with a modern **Cinnamon Desktop Environment**, **Calamares GUI Installer**, **Plymouth animated boot experience**, and an enterprise-grade productivity software suite.
-
-</div>
+![Debian](https://img.shields.io/badge/Debian-Trixie_Core-D70A53?style=flat-square&logo=debian&logoColor=white)
+![Desktop](https://img.shields.io/badge/Desktop-Cinnamon-457B9D?style=flat-square&logo=linuxmint&logoColor=white)
+![Architecture](https://img.shields.io/badge/Architecture-x86__64_%7C_ARM64-F4A261?style=flat-square&logo=arm&logoColor=white)
+![Display Manager](https://img.shields.io/badge/Display_Manager-LightDM-333333?style=flat-square&logo=linux&logoColor=white)
+![Installer](https://img.shields.io/badge/Installer-Calamares_GUI-2A9D8F?style=flat-square&logo=linux&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Containerized_Build-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Bootloader](https://img.shields.io/badge/Bootloader-GRUB_EFI_%7C_Syslinux-6C757D?style=flat-square&logo=gnu&logoColor=white)
+![Plymouth](https://img.shields.io/badge/Boot_Splash-Plymouth_Theme-007ACC?style=flat-square&logo=linux&logoColor=white)
+![LibreOffice](https://img.shields.io/badge/Productivity-LibreOffice-18A303?style=flat-square&logo=libreoffice&logoColor=white)
+![Firefox](https://img.shields.io/badge/Browser-Firefox_ESR-FF7139?style=flat-square&logo=firefox&logoColor=white)
+![Virtualization](https://img.shields.io/badge/Virtualization-KVM_%2F_QEMU-FF5722?style=flat-square&logo=qemu&logoColor=white)
+![License](https://img.shields.io/badge/License-GPLv3-1D3557?style=flat-square&logo=gnu&logoColor=white)
 
 ---
 
-## 🌟 Key Highlights & Architectural Features
+## Table of Contents
 
-### 🖥️ 1. Modern Desktop Experience
-- **Cinnamon Desktop Environment**: Fast, elegant, and resource-efficient desktop tailored for productivity.
-- **Custom Visual Identity**: Pre-configured with the official **Eloquence Dark Space** wallpaper, Phoenix branding, and dark GTK3 styling.
-- **LightDM with Seamless Live Autologin**: Instant passwordless live boot into a fully functioning graphic desktop environment.
-
-### 💿 2. Calamares Graphical System Installer
-- **Branded Installation Experience**: Calamares installer featuring the official **Eloquence Phoenix logo** and tailored styling (`#17252a` / `#3aafa9`).
-- **Clean Post-Install Cleanup**: Live installer shortcuts and temporary live user accounts are automatically pruned from the installed target system.
-- **Flexible Disk Partitioning**: Full support for Btrfs, Ext4, XFS, and automated disk encryption (LUKS).
-
-### 🚀 3. Plymouth Animated Boot Splash & Custom GRUB
-- **Animated Startup Screen**: High-resolution, glowing Eloquence Phoenix logo on boot instead of text console logs.
-- **Noise-Free Solid 24-bit Bootloader Splash**: Custom 1920x1080 GRUB/Syslinux bootloader menu offering:
-  1. `⚡ 1. Eloquence GNU/Linux 2026.1 (Live Desktop Session)`
-  2. `💿 2. Install Eloquence GNU/Linux (Direct Calamares GUI Installer)`
-  3. `🛡️ 3. Eloquence GNU/Linux (Fail-safe / Safe Graphics Mode)`
-  4. `⚡ 4. Eloquence GNU/Linux (Copy to RAM Mode)`
-
-### 📦 4. Complete Stock Software Suite
-
-| Category | Application | Description |
-| :--- | :--- | :--- |
-| **Productivity** | **LibreOffice Complete** | Full office suite: Writer (Docs), Calc (Sheets), Impress (Slides), Draw, Math. |
-| **Internet & Web** | **Firefox ESR & Thunderbird** | Fast, privacy-oriented web browsing and professional email client. |
-| **Multimedia** | **VLC Media Player & Rhythmbox** | Universal high-performance video and audio playback engines. |
-| **Graphics & Design** | **GIMP & Inkscape** | Advanced raster photo editing and scalable vector graphics creation. |
-| **System & Security** | **Timeshift, GParted, GUFW** | System snapshot restore points, partition manager, and graphical firewall. |
-| **Virtualization** | **Virt-Manager & QEMU/KVM** | Hardware-accelerated native kernel virtual machine management. |
+* [Overview](#overview)
+* [Tech Stack](#tech-stack)
+* [Architecture](#architecture)
+* [Hardware Specifications](#hardware-specifications)
+* [Pre-Installed Applications Inventory](#pre-installed-applications-inventory)
+* [Bootloader & Display Infrastructure](#bootloader--display-infrastructure)
+* [Installer & System Provisioning](#installer--system-provisioning)
+* [Containerized Build Pipeline (Docker)](#containerized-build-pipeline-docker)
+* [Repository Structure](#repository-structure)
+* [Getting Started & Build Commands](#getting-started--build-commands)
+* [Configuration & Security Practices](#configuration--security-practices)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [License](#license)
 
 ---
 
-## 💻 System Requirements
+## Overview
 
-| Specification | Minimum | Recommended |
-| :--- | :--- | :--- |
+This repository serves as the single source of truth for the build, packaging, and configuration pipeline of Eloquence GNU/Linux. The operating system utilizes Debian Trixie as its foundation, coupled with the Cinnamon Desktop Environment, modern typography, custom system branding, and automated Calamares system deployment.
+
+### Key Functional Domains:
+* **`auto/`** — Live-build automation parameters, kernel bootstrap configs, and cross-architecture target declarations.
+* **`config/bootloaders/`** — GRUB EFI, GRUB PC, and Syslinux noise-free solid RGB splash configurations and boot menus.
+* **`config/calamares/`** — Graphical installer settings, Eloquence Phoenix branding assets, and post-installation cleanup hooks.
+* **`config/package-lists/`** — Manifest declarations for core packages, desktop stacks, and productivity utilities.
+* **`config/includes.chroot/`** — Overlay filesystems covering wallpapers, terminal MOTD banners, LightDM, and dconf databases.
+* **`scripts/`** — Master image creation, live filesystem preparation, and ISO verification tooling.
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+| --- | --- |
+| **Base Distribution** | Debian GNU/Linux (Trixie testing core) |
+| **Desktop Environment** | Cinnamon Desktop (GTK3 dark theme, Adwaita suite) |
+| **Display Manager** | LightDM with LightDM GTK Greeter (autologin enabled) |
+| **System Installer** | Calamares GUI Installer (custom branding, auto cleanup) |
+| **Boot Splash** | Plymouth animated boot theme (pulse animation) |
+| **Bootloaders** | GRUB 2 (UEFI x86_64/ARM64) & Syslinux (BIOS legacy) |
+| **Containerization** | Docker Engine & Docker Compose build container |
+| **Virtualization Stack** | QEMU, KVM, Libvirt, Virt-Manager GUI |
+| **Core Productivity** | LibreOffice Suite (Writer, Calc, Impress, Draw, Math) |
+| **Security & Firewall** | UFW, GUFW GUI, Linux PAM authentication |
+
+---
+
+## Architecture
+
+The boot and installation lifecycle transitions cleanly from firmware initialization to a full graphical desktop environment or direct installer session.
+
+```mermaid
+flowchart TB
+    classDef bios fill:#1f2937,stroke:#64748b,color:#f8fafc
+    classDef boot fill:#7c2d12,stroke:#f97316,color:#fff7ed
+    classDef kernel fill:#164e63,stroke:#06b6d4,color:#ecfeff
+    classDef desktop fill:#3730a3,stroke:#818cf8,color:#eef2ff
+    classDef installer fill:#166534,stroke:#22c55e,color:#f0fdf4
+    classDef disk fill:#78350f,stroke:#f59e0b,color:#fffbeb
+
+    FW["System Firmware (UEFI / BIOS)"]:::bios
+    BL["GRUB / Syslinux Menu<br/>(Noise-Free Solid RGB Splash)"]:::boot
+
+    subgraph BOOTSTRAP["Kernel & Initramfs Stage"]
+        direction LR
+        KRN["Linux Kernel 6.12+"]:::kernel
+        PLY["Plymouth Boot Splash<br/>(Animated Phoenix)"]:::kernel
+        SYS["systemd Init & Services"]:::kernel
+    end
+
+    subgraph DISPLAY["Display & Session Layer"]
+        direction LR
+        LDM["LightDM Greeter"]:::desktop
+        CIN["Cinnamon Desktop Session<br/>(Dark Theme / Wallpaper)"]:::desktop
+    end
+
+    subgraph TARGET["System Installation Workflow"]
+        direction LR
+        CAL["Calamares GUI Installer<br/>(Branded Interface)"]:::installer
+        RU["removeuser & shellprocess<br/>(Post-Install Cleanup)"]:::installer
+        DSK[("Target Disk Storage<br/>(Btrfs / Ext4 / LUKS)")]:::disk
+    end
+
+    FW --> BL
+    BL -->|Option 1: Live Desktop| KRN
+    BL -->|Option 2: Direct Install| KRN
+    KRN --> PLY --> SYS
+    SYS --> LDM --> CIN
+    CIN -->|Launch Installer| CAL
+    BL -.->|Auto-Trigger| CAL
+    CAL --> RU --> DSK
+
+```
+
+---
+
+## Hardware Specifications
+
+| Component | Minimum Specification | Recommended Specification |
+| --- | --- | --- |
 | **Processor** | 64-bit Dual-Core (x86_64 or ARM64) | 64-bit Quad-Core CPU (Intel, AMD, Apple Silicon, ARM) |
-| **Memory (RAM)**| 2 GB RAM | 4 GB+ RAM |
-| **Storage** | 15 GB Free Disk Space | 30 GB+ SSD Storage |
-| **Display** | 1024 x 768 Resolution | 1920 x 1080 HD or 4K Display |
+| **Memory (RAM)** | 2 GB RAM | 4 GB+ DDR4 / LPDDR5 RAM |
+| **Storage** | 15 GB Free Disk Space | 30 GB+ NVMe SSD Storage |
+| **Graphics** | Standard VGA / Direct Rendering | OpenGL 3.3+ Hardware Acceleration |
+| **Display** | 1024 x 768 Resolution | 1920 x 1080 Full HD or 4K Display |
 
 ---
 
-## 🐳 Containerized Build Guide (Docker)
+## Pre-Installed Applications Inventory
 
-Build clean Live ISOs on any operating system (macOS, Ubuntu, Debian, Fedora, Arch) without installing build toolchains on the host:
+### Office & Productivity
+* **LibreOffice Writer:** Full-featured document processor supporting ODF, DOCX, and PDF exports.
+* **LibreOffice Calc:** Spreadsheet management, statistical analysis, and graphing utility.
+* **LibreOffice Impress:** Presentation software with multimedia transition capabilities.
+* **LibreOffice Draw & Math:** Vector drawing and technical formula editor.
+
+### Internet & Communication
+* **Firefox ESR:** Privacy-focused, high-performance web browser.
+* **Thunderbird:** Integrated email client, address book, and calendar management suite.
+
+### Multimedia & Graphics
+* **VLC Media Player:** Universal audio and video playback engine.
+* **Rhythmbox:** Local audio library organization and music player.
+* **GIMP:** Professional raster graphics editor for image retouching and composition.
+* **Inkscape:** Scalable vector graphics editor.
+* **Evince & Simple Scan:** Document viewing and hardware document scanning utility.
+
+### System, Security & Virtualization
+* **Timeshift:** Automated system restore points and Btrfs/RSync snapshot manager.
+* **GParted & GNOME Disk Utility:** Partition management, disk formatting, and S.M.A.R.T. health diagnostics.
+* **GUFW & UFW:** Graphical firewall frontend and packet filtering control.
+* **Virt-Manager & QEMU/KVM:** Native kernel virtual machine provisioning and hardware passthrough.
+* **Synaptic Package Manager:** Advanced graphical APT package management.
+
+---
+
+## Bootloader & Display Infrastructure
+
+* **Noise-Free Solid RGB Splash:** 1920x1080 solid 24-bit canvas (`#17252a`) avoiding dithering artifacts across legacy and UEFI framebuffers.
+* **Plymouth Animated Boot Splash:** Configured via system alternatives (`default.plymouth`) for smooth graphical boot transitions.
+* **Display Manager (LightDM):** Direct live user autologin (`eloquence`) with PAM permit overrides for passwordless initialization.
+* **Lockscreen & Theme Engine:** Cinnamon screensaver, GNOME schemas, and GTK3 forced dark theme (`Adwaita-dark`) using dconf profile defaults.
+
+---
+
+## Installer & System Provisioning
+
+Eloquence GNU/Linux utilizes a customized build of the Calamares installer framework:
+
+* **Visual Identity:** Custom branding stylesheet incorporating the Eloquence Phoenix logo and color scheme.
+* **Live Exclusivity:** The installer launcher (`install-eloquence.desktop`) utilizes `OnlyShowIn=X-Live;` to ensure visibility solely inside live sessions.
+* **Automated Cleanup Modules:** 
+  * `removeuser.conf` — Automatically purges the temporary live user account (`eloquence`) from the target system.
+  * `shellprocess.conf` — Deletes live installer desktop shortcuts and skeleton configurations upon installation completion.
+
+---
+
+## Containerized Build Pipeline (Docker)
+
+ISOs can be built reliably across heterogeneous host platforms (macOS, Ubuntu, Fedora, Arch) without polluting host package states:
+
+* **Dockerfile:** Encapsulates `live-build`, `debootstrap`, `squashfs-tools`, `xorriso`, and `qemu-user-static`.
+* **Cross-Architecture Support:** Builds `x86_64` (amd64) and `ARM64` (aarch64) ISOs via static user-space binary emulation.
+* **Deterministic Output:** Generates hybrid bootable ISO images in the `build_output/` artifact directory.
+
+---
+
+## Repository Structure
+
+```text
+eloquence/
+├── Dockerfile                         # Containerized build environment
+├── docker-compose.yml                 # Compose service for containerized ISO compilation
+├── Makefile                           # Unified orchestration targets
+├── LICENSE                            # GNU General Public License v3
+├── README.md                          # Repository documentation
+├── auto/
+│   ├── build.sh                       # Live-build hook runner
+│   └── config.sh                      # Architecture, kernel, and bootloader definitions
+├── config/
+│   ├── archives/                      # APT repositories and repository mirrors
+│   ├── bootloaders/
+│   │   ├── grub-efi/                  # GRUB UEFI configuration and splash.png
+│   │   ├── grub-pc/                   # GRUB BIOS configuration and splash.png
+│   │   └── syslinux/                  # Syslinux live.cfg and menu.cfg definitions
+│   ├── calamares/
+│   │   ├── branding/eloquence/        # Calamares visual assets, logo, and branding.desc
+│   │   ├── modules/                   # Custom removeuser and shellprocess cleanup configs
+│   │   └── settings.conf              # Module execution sequence
+│   ├── desktop-entries/               # Standard XDG application shortcuts
+│   ├── hooks/normal/
+│   │   └── 099-eloquence-branding.chroot # User creation, Plymouth, and branding hook
+│   ├── includes.chroot/               # Root filesystem overlay
+│   │   ├── boot/grub/                 # Boot splash assets
+│   │   ├── etc/
+│   │   │   ├── dconf/db/local.d/      # Cinnamon and GTK dark theme schemas
+│   │   │   ├── lightdm/               # LightDM greeter and autologin settings
+│   │   │   ├── motd                   # Clean Eloquence terminal message of the day
+│   │   │   ├── os-release             # System release metadata
+│   │   │   └── skel/Desktop/          # Default desktop shortcuts
+│   │   └── usr/share/
+│   │       ├── calamares/branding/    # Systemwide Calamares fallback branding
+│   │       ├── pixmaps/               # System icons and logo assets
+│   │       └── wallpapers/            # Eloquence Dark Space wallpaper
+│   └── package-lists/
+│       └── eloquence.list.chroot      # Curated package stack (Desktop, Apps, Tools)
+└── scripts/
+    ├── build.sh                       # Master image build script
+    └── verify-iso.sh                  # Post-build ISO verification utility
+```
+
+---
+
+## Getting Started & Build Commands
+
+### 1. Containerized Build (Recommended)
+
+Generate production ISO images without installing local dependencies:
 
 ```bash
-# Clone repository
-git clone https://github.com/eloquencelinux/eloquence.git
-cd eloquence
-
-# Build x86_64 Live ISO inside Docker container:
+# Build x86_64 / amd64 ISO:
 make docker-iso-x64
 
-# Build ARM64 Live ISO inside Docker container:
+# Build ARM64 / aarch64 ISO:
 make docker-iso-arm64
 
-# Or using Docker Compose directly:
+# Or execute via Docker Compose directly:
 docker-compose up --build
 ```
-> Generated ISO images are saved automatically to `build_output/`.
 
----
+### 2. Native Host Build
 
-## 🏗️ Native Host Build Guide
-
-If you are running Debian / Ubuntu as root:
+When building on a native Debian or Ubuntu system as root:
 
 ```bash
-# Build x86_64 / amd64 Live ISO
+# Clean previous build artifacts and chroot locks:
+make clean
+
+# Compile x86_64 ISO:
 make build-iso-x64
 
-# Build ARM64 / aarch64 Live ISO
+# Compile ARM64 ISO:
 make build-iso-arm64
+```
 
-# Run configuration and shell syntax audit
+### 3. Syntax & Configuration Validation
+
+```bash
 make test
 ```
 
 ---
 
-## 📁 Repository Structure
+## Configuration & Security Practices
 
-```text
-eloquence/
-├── Dockerfile                   # Docker build container recipe
-├── docker-compose.yml           # Docker Compose build service
-├── Makefile                     # Build targets (native & containerized)
-├── LICENSE                      # GNU General Public License v3
-├── README.md                    # System documentation and build manual
-├── auto/
-│   ├── build.sh                 # Live-build invocation script
-│   └── config.sh                # Live-build architecture & parameter configuration
-├── config/
-│   ├── bootloaders/             # Custom GRUB & Syslinux splash and menu configurations
-│   ├── calamares/               # Calamares installer settings, branding & cleanup modules
-│   ├── package-lists/           # Desktop and system package manifests (eloquence.list.chroot)
-│   ├── hooks/normal/            # Chroot branding, user setup, lockscreen & Plymouth hooks
-│   └── includes.chroot/         # Pre-configured system files, wallpapers, themes & desktop entries
-└── scripts/
-    ├── build.sh                 # Master ISO generator script
-    └── verify-iso.sh            # Post-build ISO verification and check tool
-```
+* **Live Security:** Live user operates with passwordless sudo permissions for demonstration and rescue purposes; installed systems enforce standard user creation and PAM authentication.
+* **No Telemetry:** The operating system does not include third-party tracking, telemetry services, or data harvesting daemons.
+* **Firewall Defaults:** UFW is pre-installed with standard restrictive incoming packet policies.
+* **Vulnerability Reporting:** See `SECURITY.md` for disclosure procedures.
 
 ---
 
-## 📜 License & Copyright
+## Roadmap
 
-**Eloquence GNU/Linux** is free software distributed under the terms of the **GNU General Public License v3.0 (GPLv3)**.
+* Official netboot (iPXE) installation endpoint support.
+* Custom lightweight CLI-only edition tailored for cloud compute nodes.
+* Automated ZFS-on-root installation module for Calamares.
 
-Copyright (C) 30 October 2025 Eloquence GNU/Linux. See [LICENSE](LICENSE) for the full license text.
+---
+
+## Contributing
+
+Review `CONTRIBUTING.md` prior to submitting pull requests, modifying package lists, or altering branding assets.
+
+---
+
+## License
+
+Licensed under the terms of the GNU General Public License v3.0 outlined in [LICENSE](LICENSE).
+
+Copyright (C) 30 October 2025 Eloquence GNU/Linux.
