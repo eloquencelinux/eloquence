@@ -235,34 +235,28 @@ eloquence/
 
 ## Getting Started & Build Commands
 
-### 1. Containerized Build (Recommended)
+### 1. Dual-Architecture & Individual Build Commands
 
-Generate production ISO images without installing local dependencies:
+Generate production ISO images for both or individual architectures:
 
 ```bash
-# Build x86_64 / amd64 ISO:
-make docker-iso-x64
+# Build BOTH x86_64 and ARM64 ISOs sequentially:
+make build-iso-all
 
-# Build ARM64 / aarch64 ISO:
-make docker-iso-arm64
-
-# Or execute via Docker Compose directly:
-docker-compose up --build
+# Or build individually:
+make build-iso-x64     # Target x86_64 / amd64
+make build-iso-arm64   # Target ARM64 / aarch64
 ```
 
-### 2. Native Host Build
-
-When building on a native Debian or Ubuntu system as root:
+### 2. Containerized Build (Docker)
 
 ```bash
-# Clean previous build artifacts and chroot locks:
-make clean
+# Build BOTH architectures inside Docker container:
+make docker-iso-all
 
-# Compile x86_64 ISO:
-make build-iso-x64
-
-# Compile ARM64 ISO:
-make build-iso-arm64
+# Or build individually inside Docker:
+make docker-iso-x64
+make docker-iso-arm64
 ```
 
 ### 3. Syntax & Configuration Validation
