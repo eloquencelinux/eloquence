@@ -68,4 +68,4 @@ make test
 
 ## 📜 License
 
-Distributed under the GPL-3.0 License. See [LICENSE](LICENSE) for details.
+Distributed under the GPL-3.0 License. Copyright (C) 30 October 2025 Eloquence GNU/Linux. See [LICENSE](LICENSE) for details.
