@@ -19,3 +19,6 @@ Please include:
 - Any suggested fixes or mitigations.
 
 We aim to acknowledge reports within 48 hours and release patches in a timely manner.
+
+---
+*Last updated: 31 October 2025*
