@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "eloquence-suite"
 version = "0.1.0"
-description = "Eloquence Suite utilities, virtualization manager, and desktop environment for Eloquence OS"
+description = "Eloquence Suite utilities, virtualization manager, file finder, office suite, and app manager for Eloquence OS"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
