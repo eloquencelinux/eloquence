@@ -1,0 +1,19 @@
+# --- KERNEL & BASE SYSTEM ---
+linux-image-arm64
+live-boot
+live-config
+systemd-sysv
+
+# --- DESKTOP ENVIRONMENT (KDE Plasma & Wayland) ---
+kde-plasma-desktop
+sddm
+wayland-protocols
+plasma-workspace-wayland
+
+# --- TOOLS & UTILITIES ---
+git
+curl
+htop
+python3-pyqt6
+qemu-kvm
+libvirt-daemon-system
