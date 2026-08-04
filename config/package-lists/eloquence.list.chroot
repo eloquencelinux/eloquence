@@ -4,11 +4,18 @@ live-config
 systemd-sysv
 dbus
 
-# --- DESKTOP ENVIRONMENT (KDE Plasma & Wayland) ---
+# --- DESKTOP ENVIRONMENTS (KDE Plasma & Cinnamon) ---
 kde-plasma-desktop
-sddm
-wayland-protocols
 plasma-workspace
+sddm
+cinnamon
+cinnamon-desktop-environment
+lightdm
+wayland-protocols
+
+# --- SYSTEM INSTALLER (Calamares) ---
+calamares
+calamares-settings-debian
 
 # --- ELOQUENCE SUITE DEPENDENCIES ---
 python3
