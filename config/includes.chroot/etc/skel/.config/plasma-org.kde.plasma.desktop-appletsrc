@@ -1,0 +1,11 @@
+[Containments][1]
+activityId=
+wallpaperplugin=org.kde.image
+
+[Containments][1][Applets][2]
+plugin=org.kde.plasma.kickoff
+
+[Containments][1][Wallpaper][org.kde.image][General]
+Image=file:///usr/share/wallpapers/eloquence-dark.jpg
+ImageDark=file:///usr/share/wallpapers/eloquence-dark.jpg
+ImageLight=file:///usr/share/wallpapers/eloquence-light.png

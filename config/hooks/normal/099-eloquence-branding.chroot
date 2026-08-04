@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-echo "[BUILD HOOK] Applying 100% Eloquence OS Branding, Repositories, and Settings..."
+echo "[BUILD HOOK] Applying 100% Eloquence OS Branding, Repositories, Wallpapers, and Settings..."
 
 # Set GRUB Distributor Name
 if [ -f "/etc/default/grub" ]; then
@@ -45,9 +45,14 @@ fi
 echo "⚡ Eloquence OS 2026.1 (Trixie) \n \l" > /etc/issue
 echo "⚡ Eloquence OS 2026.1 (Trixie)" > /etc/issue.net
 
+# Configure SDDM background wallpaper
+if [ -f "/etc/sddm.conf.d/eloquence.conf" ]; then
+    echo "Background=/usr/share/wallpapers/eloquence-dark.jpg" >> /etc/sddm.conf.d/eloquence.conf
+fi
+
 # Set permissions for desktop shortcuts in /etc/skel/Desktop
 if [ -d "/etc/skel/Desktop" ]; then
     chmod +x /etc/skel/Desktop/*.desktop 2>/dev/null || true
 fi
 
-echo "[BUILD HOOK] Eloquence OS branding & repository endpoints applied successfully."
+echo "[BUILD HOOK] Eloquence OS branding & default wallpapers applied successfully."
