@@ -1,0 +1,2 @@
+bin/elo.sh usr/bin/elo
+config/desktop-entries/*.desktop usr/share/applications/

@@ -1,4 +1,4 @@
-.PHONY: help install clean build-iso build-iso-x64 build-iso-arm64 test lint
+.PHONY: help install clean build-iso build-iso-x64 build-iso-arm64 deb test lint
 
 ARCH ?= amd64
 
@@ -11,6 +11,7 @@ help:
 	@echo "  make build-iso       - Build Live ISO for target ARCH (default: amd64)"
 	@echo "  make build-iso-x64   - Build Live ISO for x86_64 / amd64"
 	@echo "  make build-iso-arm64 - Build Live ISO for ARM64 / aarch64"
+	@echo "  make deb             - Build native Debian package (.deb) using dpkg-buildpackage"
 	@echo "  make test            - Run Python syntax checks for Eloquence Suite"
 	@echo "  make lint            - Run shell script syntax linters"
 	@echo "  make clean           - Clean build artifacts and pycache"
@@ -31,6 +32,10 @@ build-iso-x64:
 build-iso-arm64:
 	$(MAKE) build-iso ARCH=arm64
 
+deb:
+	@echo "Building native Debian package (.deb)..."
+	dpkg-buildpackage -us -uc -b
+
 test:
 	@echo "Running Python syntax validation..."
 	python3 -m py_compile elovirt/main.py elovirt/qemu_wrapper.py
@@ -43,6 +48,7 @@ lint:
 	@echo "Running shell script syntax check..."
 	bash -n bin/elo.sh
 	bash -n scripts/build.sh
+	bash -n scripts/verify-iso.sh
 	sh -n auto/config.sh
 	sh -n auto/build.sh
 	@echo "[SUCCESS] All shell scripts passed syntax check."

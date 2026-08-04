@@ -1,0 +1,7 @@
+eloquence-suite (0.1.0-1) trixie; urgency=medium
+
+  * Initial release of Eloquence Suite for Eloquence OS.
+  * Added elovirt, elofind, elooffice, and eloapps packages.
+  * Multi-architecture support for x86_64 (amd64) and ARM64 (aarch64).
+
+ -- Eloquence OS Team <developer@eloquencelinux.org>  Tue, 04 Aug 2026 22:45:00 +0300
