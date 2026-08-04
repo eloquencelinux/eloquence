@@ -7,19 +7,27 @@ help:
 	@echo " Eloquence OS / Eloquence Suite Build System"
 	@echo "====================================================="
 	@echo "Available make commands:"
-	@echo "  make install         - Install Eloquence Suite in editable python mode"
+	@echo "  make install         - Install Eloquence Suite (virtualenv or PEP 668 system mode)"
 	@echo "  make build-iso       - Build Live ISO for target ARCH (default: amd64)"
 	@echo "  make build-iso-x64   - Build Live ISO for x86_64 / amd64"
 	@echo "  make build-iso-arm64 - Build Live ISO for ARM64 / aarch64"
 	@echo "  make deb             - Build native Debian package (.deb) using dpkg-buildpackage"
 	@echo "  make test            - Run Python syntax checks for Eloquence Suite"
 	@echo "  make lint            - Run shell script syntax linters"
-	@echo "  make clean           - Clean build artifacts and pycache"
+	@echo "  make clean           - Clean build artifacts, venv, and pycache"
 	@echo "====================================================="
 
 install:
-	pip install --upgrade pip
-	pip install -e .
+	@echo "===> Installing Eloquence Suite..."
+	@if [ -d ".venv" ] || python3 -m venv .venv 2>/dev/null; then \
+		echo "[INFO] Using virtual environment (.venv)"; \
+		.venv/bin/pip install --upgrade pip && \
+		.venv/bin/pip install -e . ; \
+	else \
+		echo "[INFO] Virtual environment creation unavailable, falling back to --break-system-packages"; \
+		pip install --upgrade pip --break-system-packages 2>/dev/null || true ; \
+		pip install -e . --break-system-packages ; \
+	fi
 
 build-iso:
 	@echo "Starting ISO generation for architecture: $(ARCH)..."
@@ -56,5 +64,5 @@ lint:
 clean:
 	rm -rf build_output/
 	rm -rf *.egg-info/
-	rm -rf dist/ build/
+	rm -rf dist/ build/ .venv/
 	find . -type d -name "__pycache__" -exec rm -rf {} +
