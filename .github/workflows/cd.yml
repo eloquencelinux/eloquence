@@ -1,0 +1,57 @@
+name: Eloquence CD - Release Pipeline
+
+on:
+  push:
+    tags:
+      - 'v*' 
+
+jobs:
+  build-release-artifacts:
+    name: Build ISO for ${{ matrix.arch }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - arch: x64
+            target: x86_64
+          - arch: arm64
+            target: aarch64
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Build Script for ${{ matrix.arch }}
+        run: |
+          echo "Starting production build process for target architecture: ${{ matrix.target }}"
+          chmod +x scripts/build-iso.sh
+          ./scripts/build-iso.sh ${{ matrix.target }}
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: eloquence-iso-${{ matrix.arch }}
+          path: build_output/*.iso
+
+  publish-release:
+    name: Publish GitHub Release
+    needs: build-release-artifacts
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download all built artifacts
+        uses: actions/download-artifact@v4
+        path: released_isos
+
+      - name: Create Release and Upload ISOs
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            released_isos/**/*.iso
+          generate_release_notes: true
+          draft: false
+          prerelease: false
