@@ -21,11 +21,18 @@ if [ "$TARGET_ARCH" = "arm64" ]; then
     IMAGE_TYPE="hdd"
 fi
 
+QEMU_ARCH="${TARGET_ARCH}"
+if [ "${TARGET_ARCH}" = "arm64" ]; then
+    QEMU_ARCH="aarch64"
+elif [ "${TARGET_ARCH}" = "amd64" ]; then
+    QEMU_ARCH="x86_64"
+fi
+
 echo "[INFO] Host Architecture:   ${HOST_ARCH}"
 echo "[INFO] Target Architecture: ${TARGET_ARCH} (${IMAGE_TYPE})"
 
 if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
-    echo "[INFO] Enabling cross-architecture QEMU static bootstrapping..."
+    echo "[INFO] Enabling cross-architecture QEMU static bootstrapping (qemu-${QEMU_ARCH}-static)..."
     lb config \
         --distribution trixie \
         --architectures "${TARGET_ARCH}" \
@@ -33,7 +40,7 @@ if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
         --binary-images "${IMAGE_TYPE}" \
         --archive-areas "main contrib non-free non-free-firmware" \
         --bootstrap-qemu-arch "${TARGET_ARCH}" \
-        --bootstrap-qemu-static "qemu-${TARGET_ARCH}-static" \
+        --bootstrap-qemu-static "qemu-${QEMU_ARCH}-static" \
         --apt-recommends false \
         "${@}"
 else

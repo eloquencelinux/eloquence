@@ -13,9 +13,8 @@ cinnamon-desktop-environment
 lightdm
 wayland-protocols
 
-# --- SYSTEM INSTALLER (Calamares) ---
+# --- SYSTEM INSTALLER ---
 calamares
-calamares-settings-debian
 
 # --- ELOQUENCE SUITE DEPENDENCIES ---
 python3
