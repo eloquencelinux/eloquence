@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -eo pipefail
 
 TARGET_RAW="${1:-$(uname -m)}"
 
@@ -34,6 +34,13 @@ mkdir -p "${OUTPUT_DIR}"
 
 if command -v lb >/dev/null 2>&1; then
     echo "===> [1/3] Using Debian live-build framework..."
+    
+    # Auto-clean any previous stale or interrupted live-build locks
+    if [ "$(id -u)" -eq 0 ]; then
+        echo "===> Cleaning stale chroot and build locks..."
+        lb clean --purge 2>/dev/null || true
+    fi
+
     if [ -f "./auto/config.sh" ]; then
         sh ./auto/config.sh "${ARCH}"
     else
@@ -41,13 +48,26 @@ if command -v lb >/dev/null 2>&1; then
     fi
 
     if [ "$(id -u)" -eq 0 ]; then
-        lb build
-        if [ -f "live-image-${ARCH}.hybrid.iso" ]; then
-            mv "live-image-${ARCH}.hybrid.iso" "${OUTPUT_DIR}/${ISO_NAME}"
-        elif [ -f "binary.hybrid.iso" ]; then
-            mv "binary.hybrid.iso" "${OUTPUT_DIR}/${ISO_NAME}"
-        elif [ -f "binary.iso" ]; then
-            mv "binary.iso" "${OUTPUT_DIR}/${ISO_NAME}"
+        echo "===> Executing live-build..."
+        if lb build 2>&1 | tee build.log; then
+            echo "[SUCCESS] live-build completed."
+            if [ -f "live-image-${ARCH}.hybrid.iso" ]; then
+                mv "live-image-${ARCH}.hybrid.iso" "${OUTPUT_DIR}/${ISO_NAME}"
+            elif [ -f "binary.hybrid.iso" ]; then
+                mv "binary.hybrid.iso" "${OUTPUT_DIR}/${ISO_NAME}"
+            elif [ -f "binary.iso" ]; then
+                mv "binary.iso" "${OUTPUT_DIR}/${ISO_NAME}"
+            elif [ -f "live-image-amd64.hybrid.iso" ]; then
+                mv "live-image-amd64.hybrid.iso" "${OUTPUT_DIR}/${ISO_NAME}"
+            fi
+        else
+            echo "============================================================"
+            echo "[ERROR] Live-build encountered an error during execution."
+            echo "See recent build output from 'build.log':"
+            echo "------------------------------------------------------------"
+            tail -n 30 build.log 2>/dev/null || true
+            echo "============================================================"
+            exit 1
         fi
     else
         echo "[WARNING] Root privileges required for 'lb build'. Execute with sudo:"
@@ -59,7 +79,6 @@ else
     echo "[INFO] Base Kernel Package: ${KERNEL_PKG}"
     echo "[INFO] Bootloader Package:  ${BOOTLOADER_PKG}"
 
-    # If debootstrap and xorriso are available, assemble ISO structure
     if command -v debootstrap >/dev/null 2>&1 && command -v xorriso >/dev/null 2>&1; then
         echo "===> [2/3] Bootstrapping Debian Trixie filesystem for ${ARCH}..."
         mkdir -p "${WORK_DIR}/chroot"

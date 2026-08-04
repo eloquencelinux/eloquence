@@ -1,4 +1,4 @@
-.PHONY: help install clean build-iso build-iso-x64 build-iso-arm64 deb test lint
+.PHONY: help install clean clean-build build-iso build-iso-x64 build-iso-arm64 deb test lint
 
 ARCH ?= amd64
 
@@ -14,7 +14,8 @@ help:
 	@echo "  make deb             - Build native Debian package (.deb) using dpkg-buildpackage"
 	@echo "  make test            - Run Python syntax checks for Eloquence Suite"
 	@echo "  make lint            - Run shell script syntax linters"
-	@echo "  make clean           - Clean build artifacts, venv, and pycache"
+	@echo "  make clean           - Clean build artifacts, venv, pycache, and chroot locks"
+	@echo "  make clean-build     - Purge live-build chroot and cache locks (lb clean --purge)"
 	@echo "====================================================="
 
 install:
@@ -61,7 +62,14 @@ lint:
 	sh -n auto/build.sh
 	@echo "[SUCCESS] All shell scripts passed syntax check."
 
-clean:
+clean-build:
+	@echo "Purging live-build environment and locks..."
+	@if command -v lb >/dev/null 2>&1; then \
+		lb clean --purge 2>/dev/null || true; \
+	fi
+	rm -rf .build/ chroot/ binary/ binary.iso binary.hybrid.iso live-image-*.iso build.log
+
+clean: clean-build
 	rm -rf build_output/
 	rm -rf *.egg-info/
 	rm -rf dist/ build/ .venv/
