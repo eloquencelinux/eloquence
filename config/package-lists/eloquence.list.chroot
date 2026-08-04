@@ -17,13 +17,15 @@ python3-pyqt6
 python3-pyqt6.qtwebengine
 python3-psutil
 
-# --- VIRTUALIZATION & TOOLS ---
+# --- VIRTUALIZATION & SYSTEM TOOLS ---
 qemu-system-x86
 qemu-system-arm
 libvirt-daemon-system
 git
 curl
 htop
+fastfetch
+neofetch
 ca-certificates
 sudo
 pkexec
