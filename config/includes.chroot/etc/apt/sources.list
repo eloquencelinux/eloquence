@@ -1,0 +1,10 @@
+# ===================================================================
+# Eloquence OS Package Repositories (Eloquence 2026.1 - Trixie Core)
+# ===================================================================
+
+deb http://deb.eloquencelinux.org/eloquence trixie main contrib non-free non-free-firmware
+deb http://deb.eloquencelinux.org/eloquence trixie-updates main contrib non-free non-free-firmware
+deb http://security.eloquencelinux.org/eloquence-security trixie-security main contrib non-free non-free-firmware
+
+# Source Repositories
+# deb-src http://deb.eloquencelinux.org/eloquence trixie main contrib non-free non-free-firmware

@@ -1,0 +1,10 @@
+// Eloquence OS APT Configuration
+APT::Install-Recommends "0";
+APT::Install-Suggests "0";
+Acquire::Languages "none";
+APT::Vendor::Identifier "Eloquence";
+APT::Default-Release "trixie";
+
+// Custom User-Agent header for package downloads
+Acquire::http::User-Agent "Eloquence-OS/2026.1 (APT/1.0)";
+Acquire::https::User-Agent "Eloquence-OS/2026.1 (APT/1.0)";

@@ -1,12 +1,27 @@
 #!/usr/bin/env sh
 set -e
 
-echo "[BUILD HOOK] Applying 100% Eloquence OS Branding and Settings..."
+echo "[BUILD HOOK] Applying 100% Eloquence OS Branding, Repositories, and Settings..."
 
 # Set GRUB Distributor Name
 if [ -f "/etc/default/grub" ]; then
     sed -i 's/^GRUB_DISTRIBUTOR=.*/GRUB_DISTRIBUTOR="Eloquence"/' /etc/default/grub || true
 fi
+
+# Replace default Debian repository URLs in APT sources with Eloquence OS mirror endpoints
+if [ -f "/etc/apt/sources.list" ]; then
+    sed -i 's|http://deb.debian.org/debian|http://deb.eloquencelinux.org/eloquence|g' /etc/apt/sources.list
+    sed -i 's|http://security.debian.org/debian-security|http://security.eloquencelinux.org/eloquence-security|g' /etc/apt/sources.list
+    sed -i 's|http://ftp.debian.org/debian|http://deb.eloquencelinux.org/eloquence|g' /etc/apt/sources.list
+fi
+
+for src_file in /etc/apt/sources.list.d/*.list; do
+    if [ -f "$src_file" ]; then
+        sed -i 's|http://deb.debian.org/debian|http://deb.eloquencelinux.org/eloquence|g' "$src_file"
+        sed -i 's|http://security.debian.org/debian-security|http://security.eloquencelinux.org/eloquence-security|g' "$src_file"
+        sed -i 's|http://ftp.debian.org/debian|http://deb.eloquencelinux.org/eloquence|g' "$src_file"
+    fi
+done
 
 # Ensure /etc/os-release has Eloquence OS branding
 if [ -f "/etc/os-release" ]; then
@@ -35,4 +50,4 @@ if [ -d "/etc/skel/Desktop" ]; then
     chmod +x /etc/skel/Desktop/*.desktop 2>/dev/null || true
 fi
 
-echo "[BUILD HOOK] Eloquence OS branding applied successfully."
+echo "[BUILD HOOK] Eloquence OS branding & repository endpoints applied successfully."
