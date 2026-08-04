@@ -1,0 +1,38 @@
+#!/usr/bin/env sh
+set -e
+
+echo "[BUILD HOOK] Applying 100% Eloquence OS Branding and Settings..."
+
+# Set GRUB Distributor Name
+if [ -f "/etc/default/grub" ]; then
+    sed -i 's/^GRUB_DISTRIBUTOR=.*/GRUB_DISTRIBUTOR="Eloquence"/' /etc/default/grub || true
+fi
+
+# Ensure /etc/os-release has Eloquence OS branding
+if [ -f "/etc/os-release" ]; then
+    cat << 'EOF' > /etc/os-release
+NAME="Eloquence OS"
+VERSION="2026.1 (Trixie)"
+ID=eloquence
+ID_LIKE=debian
+VERSION_ID="2026.1"
+VERSION_CODENAME=trixie
+PRETTY_NAME="Eloquence OS 2026.1"
+HOME_URL="https://github.com/eloquencelinux/eloquence"
+SUPPORT_URL="https://github.com/eloquencelinux/eloquence/issues"
+BUG_REPORT_URL="https://github.com/eloquencelinux/eloquence/issues"
+BUILD_ID="2026.1-trixie"
+LOGO=eloquence-logo
+EOF
+fi
+
+# Ensure /etc/issue and /etc/motd
+echo "⚡ Eloquence OS 2026.1 (Trixie) \n \l" > /etc/issue
+echo "⚡ Eloquence OS 2026.1 (Trixie)" > /etc/issue.net
+
+# Set permissions for desktop shortcuts in /etc/skel/Desktop
+if [ -d "/etc/skel/Desktop" ]; then
+    chmod +x /etc/skel/Desktop/*.desktop 2>/dev/null || true
+fi
+
+echo "[BUILD HOOK] Eloquence OS branding applied successfully."

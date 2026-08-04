@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Install Eloquence OS
+GenericName=System Installer
+Comment=Install Eloquence OS Linux permanently onto your disk
+Exec=sudo -E calamares
+Icon=system-software-install
+Terminal=false
+Type=Application
+Categories=System;

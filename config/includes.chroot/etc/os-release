@@ -1,0 +1,13 @@
+NAME="Eloquence OS"
+VERSION="2026.1 (Trixie)"
+ID=eloquence
+ID_LIKE=debian
+VERSION_ID="2026.1"
+VERSION_CODENAME=trixie
+PRETTY_NAME="Eloquence OS 2026.1"
+HOME_URL="https://github.com/eloquencelinux/eloquence"
+SUPPORT_URL="https://github.com/eloquencelinux/eloquence/issues"
+BUG_REPORT_URL="https://github.com/eloquencelinux/eloquence/issues"
+PRIVACY_POLICY_URL="https://github.com/eloquencelinux/eloquence"
+BUILD_ID="2026.1-trixie"
+LOGO=eloquence-logo
