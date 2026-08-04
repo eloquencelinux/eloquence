@@ -5,13 +5,20 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "eloquence-suite"
 version = "0.1.0"
-description = "Ecosistemul utilitarelor Elo-Suite pentru Eloquence Run"
+description = "Eloquence Suite utilities, virtualization manager, and desktop environment for Eloquence OS"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "PyQt6>=6.4.0",
+    "PyQt6-WebEngine>=6.4.0",
     "psutil>=5.9.0"
 ]
 
 [project.scripts]
 elovirt = "elovirt.main:main"
+elofind = "elofind.main:main"
+elooffice = "elooffice.main:main"
+eloapps = "eloapps.main:main"
+
+[tool.setuptools.packages.find]
+include = ["elovirt*", "elofind*", "elooffice*", "eloapps*"]
