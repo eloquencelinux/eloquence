@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+set -e
+
+echo "[BUILD HOOK] Configuring Eloquence Suite environments inside chroot..."
+
+mkdir -p /opt/eloquence-suite
+mkdir -p /etc/eloquence
+
+echo "Configuring default system parameters..."
