@@ -1,0 +1,46 @@
+name: Release & ISO Publishing
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Debian ISO Build Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y debootstrap squashfs-tools genisoimage xorriso live-build
+
+      - name: Build Live ISO for x86_64 (amd64)
+        run: |
+          make build-iso-x64
+
+      - name: Build Live ISO for ARM64 (aarch64)
+        run: |
+          make build-iso-arm64
+
+      - name: Generate Checksums
+        run: |
+          cd build_output
+          sha256sum eloquence-amd64.iso > SHA256SUMS
+          sha256sum eloquence-arm64.iso >> SHA256SUMS
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            build_output/eloquence-amd64.iso
+            build_output/eloquence-arm64.iso
+            build_output/SHA256SUMS
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

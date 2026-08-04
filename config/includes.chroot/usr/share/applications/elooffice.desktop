@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Elooffice Document Editor
+Comment=Lightweight productivity editor and Markdown reader for Eloquence OS
+Exec=elo office
+Icon=document-properties
+Terminal=false
+Type=Application
+Categories=Office;TextEditor;Qt;
+Keywords=office;editor;markdown;notes;document;eloquence;
