@@ -35,7 +35,6 @@ mkdir -p "${OUTPUT_DIR}"
 if command -v lb >/dev/null 2>&1; then
     echo "===> [1/3] Using Debian live-build framework..."
     
-    # Auto-clean any previous stale or interrupted live-build locks
     if [ "$(id -u)" -eq 0 ]; then
         echo "===> Cleaning stale chroot and build locks..."
         lb clean --purge 2>/dev/null || true
@@ -66,6 +65,9 @@ if command -v lb >/dev/null 2>&1; then
             echo "See recent build output from 'build.log':"
             echo "------------------------------------------------------------"
             tail -n 30 build.log 2>/dev/null || true
+            echo "------------------------------------------------------------"
+            echo "[TIP] If cross-building (e.g. ARM64 on x86_64 host), install QEMU static emulators:"
+            echo "      apt-get update && apt-get install -y qemu-user-static binfmt-support"
             echo "============================================================"
             exit 1
         fi
