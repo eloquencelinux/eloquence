@@ -31,12 +31,12 @@ elif [ "${TARGET_ARCH}" = "amd64" ]; then
     QEMU_ARCH="x86_64"
 fi
 
-LIVE_BOOTAPPEND="boot=live components quiet splash live-config.username=eloquence live-config.user-default-groups=sudo,wheel,netdev,audio,video"
+LIVE_BOOTAPPEND="boot=live components quiet splash live-config.username=eloquence live-config.user-default-groups=sudo,video,audio,netdev,nopasswdlogin"
 
 echo "[INFO] Host Architecture:   ${HOST_ARCH}"
 echo "[INFO] Target Architecture: ${TARGET_ARCH} (${IMAGE_TYPE})"
 echo "[INFO] Bootloader Target:   ${BOOTLOADER}"
-echo "[INFO] Autologin User:      eloquence (passwordless)"
+echo "[INFO] Autologin User:      eloquence (zero-password direct GUI boot)"
 
 if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
     echo "[INFO] Enabling cross-architecture QEMU static bootstrapping (qemu-${QEMU_ARCH}-static)..."

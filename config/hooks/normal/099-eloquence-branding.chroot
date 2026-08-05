@@ -1,7 +1,26 @@
 #!/usr/bin/env sh
 set -e
 
-echo "[BUILD HOOK] Applying 100% Eloquence GNU/Linux Branding, Cinnamon Desktop, Autologin & System Settings..."
+echo "[BUILD HOOK] Applying 100% Eloquence GNU/Linux Branding, Cinnamon Desktop, Passwordless Autologin & System Settings..."
+
+# Create nopasswdlogin group if not exists
+groupadd -r nopasswdlogin 2>/dev/null || true
+
+# Pre-create live users (eloquence and user) with blank passwords
+useradd -m -s /bin/bash -G sudo,video,audio,netdev,nopasswdlogin eloquence 2>/dev/null || true
+useradd -m -s /bin/bash -G sudo,video,audio,netdev,nopasswdlogin user 2>/dev/null || true
+
+passwd -d eloquence 2>/dev/null || true
+passwd -d user 2>/dev/null || true
+passwd -d root 2>/dev/null || true
+
+# Copy skel contents to live users home directories
+if [ -d "/etc/skel" ]; then
+    cp -r /etc/skel/. /home/eloquence/ 2>/dev/null || true
+    cp -r /etc/skel/. /home/user/ 2>/dev/null || true
+    chown -R eloquence:eloquence /home/eloquence 2>/dev/null || true
+    chown -R user:user /home/user 2>/dev/null || true
+fi
 
 # Set GRUB Distributor Name
 if [ -f "/etc/default/grub" ]; then
