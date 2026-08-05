@@ -1,25 +1,24 @@
 #!/usr/bin/env sh
 set -e
 
-echo "[BUILD HOOK] Applying 100% Eloquence GNU/Linux Branding, Cinnamon Desktop, Calamares & LightDM Settings..."
+echo "[BUILD HOOK] Applying 100% Eloquence GNU/Linux Branding, Lockscreen, Cinnamon Desktop & System Settings..."
 
 # Create nopasswdlogin group if not exists
 groupadd -r nopasswdlogin 2>/dev/null || true
 
-# Pre-create live users (eloquence and user) with blank passwords
-useradd -m -s /bin/bash -G sudo,video,audio,netdev,nopasswdlogin eloquence 2>/dev/null || true
-useradd -m -s /bin/bash -G sudo,video,audio,netdev,nopasswdlogin user 2>/dev/null || true
+# Remove old 'user' account if exists from base debian live-config
+userdel -r user 2>/dev/null || true
+rm -rf /home/user 2>/dev/null || true
 
+# Pre-create SINGLE live user 'eloquence' with blank password
+useradd -m -s /bin/bash -G sudo,video,audio,netdev,nopasswdlogin eloquence 2>/dev/null || true
 passwd -d eloquence 2>/dev/null || true
-passwd -d user 2>/dev/null || true
 passwd -d root 2>/dev/null || true
 
-# Copy skel contents to live users home directories
+# Copy skel contents to live user home directory
 if [ -d "/etc/skel" ]; then
     cp -r /etc/skel/. /home/eloquence/ 2>/dev/null || true
-    cp -r /etc/skel/. /home/user/ 2>/dev/null || true
     chown -R eloquence:eloquence /home/eloquence 2>/dev/null || true
-    chown -R user:user /home/user 2>/dev/null || true
 fi
 
 # Set GRUB Distributor Name
@@ -54,7 +53,7 @@ fi
 echo "⚡ Eloquence GNU/Linux 2026.1 (Trixie) \n \l" > /etc/issue
 echo "⚡ Eloquence GNU/Linux 2026.1 (Trixie)" > /etc/issue.net
 
-# Update dconf database for Cinnamon Desktop wallpaper and GTK Dark theme
+# Update dconf database for Cinnamon Desktop wallpaper, Lockscreen and GTK Dark theme
 if command -v dconf >/dev/null 2>&1; then
     dconf update || true
 fi
@@ -68,6 +67,14 @@ fi
 if [ -f "/usr/share/pixmaps/eloquence-logo.png" ]; then
     cp /usr/share/pixmaps/eloquence-logo.png /usr/share/pixmaps/debian-logo.png 2>/dev/null || true
     cp /usr/share/pixmaps/eloquence-logo.png /usr/share/pixmaps/system-software-install.png 2>/dev/null || true
+fi
+
+# Overwrite Debian Desktop-Base lockscreen backgrounds with Eloquence Dark Wallpaper
+if [ -f "/usr/share/wallpapers/eloquence-dark.jpg" ]; then
+    mkdir -p /usr/share/images/desktop-base
+    cp /usr/share/wallpapers/eloquence-dark.jpg /usr/share/images/desktop-base/login-background.svg 2>/dev/null || true
+    cp /usr/share/wallpapers/eloquence-dark.jpg /usr/share/images/desktop-base/lockscreen-background.svg 2>/dev/null || true
+    cp /usr/share/wallpapers/eloquence-dark.jpg /usr/share/images/desktop-base/default 2>/dev/null || true
 fi
 
 # Ensure Calamares branding points to Eloquence Phoenix logo
@@ -87,4 +94,4 @@ if [ -d "/etc/skel/Desktop" ]; then
     chmod +x /etc/skel/Desktop/*.desktop 2>/dev/null || true
 fi
 
-echo "[BUILD HOOK] Eloquence GNU/Linux Cinnamon branding, autologin, Calamares & Plymouth applied successfully."
+echo "[BUILD HOOK] Eloquence GNU/Linux Cinnamon branding, single live user, Lockscreen & Plymouth applied successfully."

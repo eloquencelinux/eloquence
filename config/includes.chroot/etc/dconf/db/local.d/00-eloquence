@@ -6,6 +6,16 @@ picture-options='zoom'
 picture-uri='file:///usr/share/wallpapers/eloquence-dark.jpg'
 picture-options='zoom'
 
+[org/cinnamon/desktop/screensaver]
+picture-uri='file:///usr/share/wallpapers/eloquence-dark.jpg'
+picture-options='zoom'
+lock-dialog-theme='Adwaita-dark'
+clock-use-24h=true
+
+[org/gnome/desktop/screensaver]
+picture-uri='file:///usr/share/wallpapers/eloquence-dark.jpg'
+picture-options='zoom'
+
 [org/cinnamon/desktop/interface]
 gtk-theme='Adwaita-dark'
 icon-theme='Adwaita'
