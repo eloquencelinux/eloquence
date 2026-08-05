@@ -12,7 +12,7 @@ help:
 	@echo "  make build-iso-x64   - Build Live ISO for x86_64 / amd64"
 	@echo "  make build-iso-arm64 - Build Live ISO for ARM64 / aarch64"
 	@echo "  make deb             - Build native Debian package (.deb) using dpkg-buildpackage"
-	@echo "  make test            - Run Python syntax checks for Eloquence Suite"
+	@echo "  make test            - Run Python syntax checks for all Eloquence Suite modules"
 	@echo "  make lint            - Run shell script syntax linters"
 	@echo "  make clean           - Clean build artifacts, venv, pycache, and chroot locks"
 	@echo "  make clean-build     - Purge live-build chroot and cache locks (lb clean --purge)"
@@ -46,12 +46,16 @@ deb:
 	dpkg-buildpackage -us -uc -b
 
 test:
-	@echo "Running Python syntax validation..."
+	@echo "Running Python syntax validation for Eloquence Suite..."
 	python3 -m py_compile elovirt/main.py elovirt/qemu_wrapper.py
 	python3 -m py_compile elofind/main.py
 	python3 -m py_compile elooffice/main.py
 	python3 -m py_compile eloapps/main.py
-	@echo "[SUCCESS] All Python modules compiled cleanly."
+	python3 -m py_compile eloguard/main.py
+	python3 -m py_compile elotweak/main.py
+	python3 -m py_compile elosnap/main.py
+	python3 -m py_compile eloweb/main.py
+	@echo "[SUCCESS] All 8 Eloquence Suite modules compiled cleanly."
 
 lint:
 	@echo "Running shell script syntax check..."

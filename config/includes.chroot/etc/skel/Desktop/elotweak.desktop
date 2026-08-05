@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Elotweak System & Themes
+Comment=Switch Light/Dark themes and power performance profiles on Eloquence OS
+Exec=elo tweak
+Icon=preferences-desktop-theme
+Terminal=false
+Type=Application
+Categories=Settings;DesktopSettings;Qt;
+Keywords=theme;dark;light;tweak;wallpaper;eloquence;

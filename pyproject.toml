@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "eloquence-suite"
 version = "0.1.0"
-description = "Eloquence Suite utilities, virtualization manager, file finder, office suite, and app manager for Eloquence OS"
+description = "Eloquence Suite utilities, virtualization, security, theme tweaks, snapshots, and webapps for Eloquence OS"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -19,6 +19,10 @@ elovirt = "elovirt.main:main"
 elofind = "elofind.main:main"
 elooffice = "elooffice.main:main"
 eloapps = "eloapps.main:main"
+eloguard = "eloguard.main:main"
+elotweak = "elotweak.main:main"
+elosnap = "elosnap.main:main"
+eloweb = "eloweb.main:main"
 
 [tool.setuptools.packages.find]
-include = ["elovirt*", "elofind*", "elooffice*", "eloapps*"]
+include = ["elovirt*", "elofind*", "elooffice*", "eloapps*", "eloguard*", "elotweak*", "elosnap*", "eloweb*"]

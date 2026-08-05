@@ -1,0 +1,16 @@
+[org/cinnamon/desktop/background]
+picture-uri='file:///usr/share/wallpapers/eloquence-dark.jpg'
+picture-options='zoom'
+
+[org/gnome/desktop/background]
+picture-uri='file:///usr/share/wallpapers/eloquence-dark.jpg'
+picture-options='zoom'
+
+[org/cinnamon/desktop/interface]
+gtk-theme='Adwaita-dark'
+icon-theme='Adwaita'
+font-name='Inter 10'
+
+[org/gnome/desktop/interface]
+color-scheme='prefer-dark'
+gtk-theme='Adwaita-dark'

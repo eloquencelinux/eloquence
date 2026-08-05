@@ -4,14 +4,14 @@ live-config
 systemd-sysv
 dbus
 
-# --- DESKTOP ENVIRONMENTS (KDE Plasma & Cinnamon) ---
-kde-plasma-desktop
-plasma-workspace
-sddm
+# --- DESKTOP ENVIRONMENT (Cinnamon) ---
 cinnamon
 cinnamon-desktop-environment
+cinnamon-l10n
 lightdm
-wayland-protocols
+lightdm-gtk-greeter
+dconf-cli
+gsettings-desktop-schemas
 
 # --- SYSTEM INSTALLER ---
 calamares
@@ -22,6 +22,11 @@ python3-pip
 python3-pyqt6
 python3-pyqt6.qtwebengine
 python3-psutil
+
+# --- SECURITY & SNAPSHOT TOOLS ---
+ufw
+nftables
+rsync
 
 # --- VIRTUALIZATION & SYSTEM TOOLS ---
 qemu-system-x86

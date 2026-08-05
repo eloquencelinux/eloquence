@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-echo "[BUILD HOOK] Applying 100% Eloquence OS Branding, Wallpapers, and System Settings..."
+echo "[BUILD HOOK] Applying 100% Eloquence OS Branding, Cinnamon Desktop, and System Settings..."
 
 # Set GRUB Distributor Name
 if [ -f "/etc/default/grub" ]; then
@@ -30,9 +30,14 @@ fi
 echo "⚡ Eloquence OS 2026.1 (Trixie) \n \l" > /etc/issue
 echo "⚡ Eloquence OS 2026.1 (Trixie)" > /etc/issue.net
 
-# Configure SDDM background wallpaper
-if [ -f "/etc/sddm.conf.d/eloquence.conf" ]; then
-    echo "Background=/usr/share/wallpapers/eloquence-dark.jpg" >> /etc/sddm.conf.d/eloquence.conf
+# Update dconf database for Cinnamon Desktop wallpaper and GTK Dark theme
+if command -v dconf >/dev/null 2>&1; then
+    dconf update || true
+fi
+
+# Set LightDM as default display manager for Cinnamon
+if [ -f "/etc/X11/default-display-manager" ]; then
+    echo "/usr/sbin/lightdm" > /etc/X11/default-display-manager
 fi
 
 # Set permissions for desktop shortcuts in /etc/skel/Desktop
@@ -40,4 +45,4 @@ if [ -d "/etc/skel/Desktop" ]; then
     chmod +x /etc/skel/Desktop/*.desktop 2>/dev/null || true
 fi
 
-echo "[BUILD HOOK] Eloquence OS branding & default wallpapers applied successfully."
+echo "[BUILD HOOK] Eloquence OS Cinnamon branding & wallpapers applied successfully."

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Eloguard Security Manager
+Comment=Manage firewall, system hardening, and privacy settings on Eloquence OS
+Exec=elo guard
+Icon=security-high
+Terminal=false
+Type=Application
+Categories=System;Security;Qt;
+Keywords=security;firewall;privacy;guard;eloquence;

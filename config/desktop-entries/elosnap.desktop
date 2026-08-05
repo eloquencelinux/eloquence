@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Elosnap System Backup
+Comment=Create system snapshots and restore points on Eloquence OS
+Exec=elo snap
+Icon=drive-harddisk-system
+Terminal=false
+Type=Application
+Categories=System;Archiving;Qt;
+Keywords=backup;snapshot;restore;timeshift;eloquence;
