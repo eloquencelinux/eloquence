@@ -26,9 +26,13 @@ if [ -f "/etc/default/grub" ]; then
     sed -i 's/^GRUB_DISTRIBUTOR=.*/GRUB_DISTRIBUTOR="Eloquence"/' /etc/default/grub || true
 fi
 
-# Set Plymouth Boot Splash Theme
-if command -v plymouth-set-default-theme >/dev/null 2>&1; then
-    plymouth-set-default-theme -R eloquence 2>/dev/null || true
+# Set Plymouth Boot Splash Theme via update-alternatives & plymouth-set-default-theme
+if [ -d "/usr/share/plymouth/themes/eloquence" ]; then
+    update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/eloquence/eloquence.plymouth 500 2>/dev/null || true
+    update-alternatives --set default.plymouth /usr/share/plymouth/themes/eloquence/eloquence.plymouth 2>/dev/null || true
+    if command -v plymouth-set-default-theme >/dev/null 2>&1; then
+        plymouth-set-default-theme -R eloquence 2>/dev/null || true
+    fi
 fi
 
 # Ensure /etc/os-release has Eloquence GNU/Linux branding

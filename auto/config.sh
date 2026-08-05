@@ -36,7 +36,7 @@ LIVE_BOOTAPPEND="boot=live components quiet splash live-config.username=eloquenc
 echo "[INFO] Host Architecture:   ${HOST_ARCH}"
 echo "[INFO] Target Architecture: ${TARGET_ARCH} (${IMAGE_TYPE})"
 echo "[INFO] Bootloader Target:   ${BOOTLOADER}"
-echo "[INFO] Autologin User:      eloquence (zero-password direct GUI boot)"
+echo "[INFO] Installer Framework: Calamares GUI Installer (Debian-Installer disabled)"
 
 if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
     echo "[INFO] Enabling cross-architecture QEMU static bootstrapping (qemu-${QEMU_ARCH}-static)..."
@@ -47,7 +47,7 @@ if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
         --binary-images "${IMAGE_TYPE}" \
         --bootloaders "${BOOTLOADER}" \
         --bootappend-live "${LIVE_BOOTAPPEND}" \
-        --debian-installer live \
+        --debian-installer false \
         --archive-areas "main contrib non-free non-free-firmware" \
         --bootstrap-qemu-arch "${TARGET_ARCH}" \
         --bootstrap-qemu-static "qemu-${QEMU_ARCH}-static" \
@@ -61,7 +61,7 @@ else
         --binary-images "${IMAGE_TYPE}" \
         --bootloaders "${BOOTLOADER}" \
         --bootappend-live "${LIVE_BOOTAPPEND}" \
-        --debian-installer live \
+        --debian-installer false \
         --archive-areas "main contrib non-free non-free-firmware" \
         --apt-recommends false \
         "${@}"
