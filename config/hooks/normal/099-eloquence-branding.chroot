@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-echo "[BUILD HOOK] Applying 100% Eloquence GNU/Linux Branding, Cinnamon Desktop, Passwordless Autologin & System Settings..."
+echo "[BUILD HOOK] Applying 100% Eloquence GNU/Linux Branding, Cinnamon Desktop, Passwordless Autologin & Plymouth Boot Theme..."
 
 # Create nopasswdlogin group if not exists
 groupadd -r nopasswdlogin 2>/dev/null || true
@@ -25,6 +25,11 @@ fi
 # Set GRUB Distributor Name
 if [ -f "/etc/default/grub" ]; then
     sed -i 's/^GRUB_DISTRIBUTOR=.*/GRUB_DISTRIBUTOR="Eloquence"/' /etc/default/grub || true
+fi
+
+# Set Plymouth Boot Splash Theme
+if command -v plymouth-set-default-theme >/dev/null 2>&1; then
+    plymouth-set-default-theme -R eloquence 2>/dev/null || true
 fi
 
 # Ensure /etc/os-release has Eloquence GNU/Linux branding
@@ -69,4 +74,4 @@ if [ -d "/etc/skel/Desktop" ]; then
     chmod +x /etc/skel/Desktop/*.desktop 2>/dev/null || true
 fi
 
-echo "[BUILD HOOK] Eloquence GNU/Linux Cinnamon branding, autologin & wallpapers applied successfully."
+echo "[BUILD HOOK] Eloquence GNU/Linux Cinnamon branding, autologin, Plymouth & wallpapers applied successfully."

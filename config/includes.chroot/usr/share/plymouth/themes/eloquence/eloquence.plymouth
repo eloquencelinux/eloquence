@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Eloquence Animated Phoenix Boot Theme
+Description=Glowing animated Eloquence Phoenix logo boot splash screen
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/eloquence
+ScriptFile=/usr/share/plymouth/themes/eloquence/eloquence.script

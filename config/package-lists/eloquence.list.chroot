@@ -3,6 +3,10 @@ live-boot
 live-config
 systemd-sysv
 dbus
+plymouth
+plymouth-themes
+grub-common
+grub2-common
 
 # --- DESKTOP ENVIRONMENT (Cinnamon) ---
 cinnamon

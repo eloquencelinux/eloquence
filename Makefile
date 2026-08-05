@@ -55,7 +55,8 @@ test:
 	python3 -m py_compile elotweak/main.py
 	python3 -m py_compile elosnap/main.py
 	python3 -m py_compile eloweb/main.py
-	@echo "[SUCCESS] All 8 Eloquence Suite modules compiled cleanly."
+	python3 -m py_compile elowelcome/main.py
+	@echo "[SUCCESS] All 9 Eloquence Suite modules compiled cleanly."
 
 lint:
 	@echo "Running shell script syntax check..."

@@ -9,6 +9,7 @@ function show_help() {
     echo "Usage: elo <command> [options]"
     echo ""
     echo "Available commands:"
+    echo "  welcome - Launch Eloquence Welcome First-Run Experience"
     echo "  virt    - Launch Elovirt Virtualization Manager (QEMU/KVM)"
     echo "  find    - Launch Elofind File Search Utility (GUI or CLI -q)"
     echo "  office  - Launch Elooffice Document Editor & Markdown Reader"
@@ -25,6 +26,9 @@ CMD="${1:-}"
 shift || true
 
 case "${CMD}" in
+    "welcome")
+        python3 -m elowelcome.main "$@"
+        ;;
     "virt")
         python3 -m elovirt.main "$@"
         ;;
