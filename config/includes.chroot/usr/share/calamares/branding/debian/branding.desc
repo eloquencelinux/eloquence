@@ -1,0 +1,35 @@
+---
+componentName:  eloquence
+
+welcomeStyleCalamares:   false
+welcomeExpandingLogo:    true
+windowExpanding:         normal
+windowSize:              800px,520px
+windowPlacement:         center
+
+strings:
+    productName:         "Eloquence GNU/Linux"
+    shortProductName:    "Eloquence"
+    version:             "2026.1"
+    shortVersion:        "2026.1"
+    versionedName:       "Eloquence GNU/Linux 2026.1"
+    shortVersionedName:  "Eloquence 2026.1"
+    bootloaderEntryName: "Eloquence GNU/Linux"
+    productUrl:          "https://github.com/eloquencelinux/eloquence"
+    supportUrl:          "https://github.com/eloquencelinux/eloquence/issues"
+    knownIssuesUrl:      "https://github.com/eloquencelinux/eloquence/issues"
+    releaseNotesUrl:     "https://github.com/eloquencelinux/eloquence/releases"
+    donateUrl:           "https://github.com/eloquencelinux/eloquence"
+
+images:
+    productLogo:         "logo.png"
+    productIcon:         "logo.png"
+    productWelcome:      "welcome.png"
+
+slideshow:               "show.qml"
+
+style:
+    SidebarBackground:    "#17252a"
+    SidebarText:          "#edf2f4"
+    SidebarTextSelect:    "#3aafa9"
+    SidebarTextHighlight: "#2b7a78"

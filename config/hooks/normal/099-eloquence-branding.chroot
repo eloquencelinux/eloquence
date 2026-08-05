@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-echo "[BUILD HOOK] Applying 100% Eloquence GNU/Linux Branding, Cinnamon Desktop, Passwordless Autologin & Plymouth Boot Theme..."
+echo "[BUILD HOOK] Applying 100% Eloquence GNU/Linux Branding, Cinnamon Desktop, Calamares & LightDM Settings..."
 
 # Create nopasswdlogin group if not exists
 groupadd -r nopasswdlogin 2>/dev/null || true
@@ -64,6 +64,19 @@ if [ -f "/etc/X11/default-display-manager" ]; then
     echo "/usr/sbin/lightdm" > /etc/X11/default-display-manager
 fi
 
+# Replace any Debian logos or software installer icons with Eloquence Phoenix logo
+if [ -f "/usr/share/pixmaps/eloquence-logo.png" ]; then
+    cp /usr/share/pixmaps/eloquence-logo.png /usr/share/pixmaps/debian-logo.png 2>/dev/null || true
+    cp /usr/share/pixmaps/eloquence-logo.png /usr/share/pixmaps/system-software-install.png 2>/dev/null || true
+fi
+
+# Ensure Calamares branding points to Eloquence Phoenix logo
+if [ -d "/etc/calamares/branding/eloquence" ]; then
+    mkdir -p /usr/share/calamares/branding/eloquence /usr/share/calamares/branding/debian
+    cp -r /etc/calamares/branding/eloquence/* /usr/share/calamares/branding/eloquence/ 2>/dev/null || true
+    cp -r /etc/calamares/branding/eloquence/* /usr/share/calamares/branding/debian/ 2>/dev/null || true
+fi
+
 # Ensure strict permissions on sudoers.d/live file
 if [ -f "/etc/sudoers.d/live" ]; then
     chmod 0440 /etc/sudoers.d/live || true
@@ -74,4 +87,4 @@ if [ -d "/etc/skel/Desktop" ]; then
     chmod +x /etc/skel/Desktop/*.desktop 2>/dev/null || true
 fi
 
-echo "[BUILD HOOK] Eloquence GNU/Linux Cinnamon branding, autologin, Plymouth & wallpapers applied successfully."
+echo "[BUILD HOOK] Eloquence GNU/Linux Cinnamon branding, autologin, Calamares & Plymouth applied successfully."
