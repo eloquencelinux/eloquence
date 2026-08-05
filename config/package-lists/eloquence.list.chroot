@@ -17,6 +17,20 @@ lightdm-gtk-greeter
 dconf-cli
 gsettings-desktop-schemas
 
+# --- STANDARD DESKTOP APPLICATIONS ---
+firefox-esr
+thunderbird
+libreoffice-writer
+libreoffice-calc
+libreoffice-impress
+libreoffice-gtk3
+vlc
+evince
+gimp
+file-roller
+gparted
+gnome-disk-utility
+
 # --- SYSTEM INSTALLER ---
 calamares
 
