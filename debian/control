@@ -1,7 +1,7 @@
 Source: eloquence-suite
 Section: admin
 Priority: optional
-Maintainer: Eloquence OS Team <developer@eloquencelinux.org>
+Maintainer: Eloquence GNU/Linux Team <developer@eloquencelinux.org>
 Build-Depends: debhelper-compat (= 13), python3-all, python3-setuptools
 Standards-Version: 4.6.2
 Homepage: https://github.com/eloquencelinux/eloquence
@@ -9,7 +9,7 @@ Homepage: https://github.com/eloquencelinux/eloquence
 Package: eloquence-suite
 Architecture: all
 Depends: ${python3:Depends}, ${misc:Depends}, python3-pyqt6, python3-pyqt6.qtwebengine, python3-psutil, qemu-system-x86 | qemu-system-arm
-Description: Integrated application suite for Eloquence OS
+Description: Integrated application suite for Eloquence GNU/Linux
  Eloquence Suite provides essential utilities, virtualization management (Elovirt),
  file searching (Elofind), document editing (Elooffice), and application management
- (Eloapps) for Eloquence OS Linux distribution.
+ (Eloapps) for Eloquence GNU/Linux Linux distribution.

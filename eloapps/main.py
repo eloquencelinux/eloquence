@@ -9,7 +9,7 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtCore import Qt
 
 FEATURED_APPS = [
-    {"name": "Firefox ESR", "package": "firefox-esr", "category": "Network", "desc": "Fast, privacy-focused web browser for Eloquence OS."},
+    {"name": "Firefox ESR", "package": "firefox-esr", "category": "Network", "desc": "Fast, privacy-focused web browser for Eloquence GNU/Linux."},
     {"name": "LibreOffice Suite", "package": "libreoffice", "category": "Productivity", "desc": "Powerful office productivity suite (Writer, Calc, Impress)."},
     {"name": "GIMP Image Editor", "package": "gimp", "category": "Graphics", "desc": "GNU Image Manipulation Program for professional editing."},
     {"name": "VLC Media Player", "package": "vlc", "category": "Multimedia", "desc": "Universal multimedia player and streaming media server."},
@@ -23,7 +23,7 @@ class EloappsWindow(QMainWindow):
         self.init_ui()
 
     def init_ui(self):
-        self.setWindowTitle("Eloapps - Eloquence OS App Center")
+        self.setWindowTitle("Eloapps - Eloquence GNU/Linux App Center")
         self.resize(800, 550)
 
         central_widget = QWidget()

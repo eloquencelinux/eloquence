@@ -28,7 +28,7 @@ def run_gui():
             self.init_ui()
 
         def init_ui(self):
-            self.setWindowTitle("Eloguard - Eloquence OS Security & Privacy Manager")
+            self.setWindowTitle("Eloguard - Eloquence GNU/Linux Security & Privacy Manager")
             self.resize(750, 500)
 
             central_widget = QWidget()
@@ -94,7 +94,7 @@ def run_gui():
     sys.exit(app.exec())
 
 def main():
-    parser = argparse.ArgumentParser(description="Eloguard - Eloquence OS Security Manager")
+    parser = argparse.ArgumentParser(description="Eloguard - Eloquence GNU/Linux Security Manager")
     parser.add_argument("-a", "--action", help="Action: status | enable-firewall | disable-firewall", default=None)
     args, unknown = parser.parse_known_args()
 

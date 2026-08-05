@@ -4,7 +4,7 @@ set -euo pipefail
 
 function show_help() {
     echo "========================================================"
-    echo " ⚡ Eloquence OS Central Suite CLI Utility"
+    echo " ⚡ Eloquence GNU/Linux Central Suite CLI Utility"
     echo "========================================================"
     echo "Usage: elo <command> [options]"
     echo ""

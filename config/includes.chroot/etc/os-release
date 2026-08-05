@@ -1,10 +1,10 @@
-NAME="Eloquence OS"
+NAME="Eloquence GNU/Linux"
 VERSION="2026.1 (Trixie)"
 ID=eloquence
 ID_LIKE=debian
 VERSION_ID="2026.1"
 VERSION_CODENAME=trixie
-PRETTY_NAME="Eloquence OS 2026.1"
+PRETTY_NAME="Eloquence GNU/Linux 2026.1"
 HOME_URL="https://github.com/eloquencelinux/eloquence"
 SUPPORT_URL="https://github.com/eloquencelinux/eloquence/issues"
 BUG_REPORT_URL="https://github.com/eloquencelinux/eloquence/issues"

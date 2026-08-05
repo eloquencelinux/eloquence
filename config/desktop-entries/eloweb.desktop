@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Eloweb WebApp Creator
-Comment=Convert any website into a standalone desktop application on Eloquence OS
+Comment=Convert any website into a standalone desktop application on Eloquence GNU/Linux
 Exec=elo web
 Icon=internet-web-browser
 Terminal=false

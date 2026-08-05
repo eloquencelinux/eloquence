@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Eloguard Security Manager
-Comment=Manage firewall, system hardening, and privacy settings on Eloquence OS
+Comment=Manage firewall, system hardening, and privacy settings on Eloquence GNU/Linux
 Exec=elo guard
 Icon=security-high
 Terminal=false

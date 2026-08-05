@@ -1,4 +1,4 @@
-// Eloquence OS APT Configuration
+// Eloquence GNU/Linux APT Configuration
 APT::Install-Recommends "0";
 APT::Install-Suggests "0";
 Acquire::Languages "none";

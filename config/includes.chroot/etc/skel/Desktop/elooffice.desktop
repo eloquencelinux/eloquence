@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Elooffice Document Editor
-Comment=Lightweight productivity editor and Markdown reader for Eloquence OS
+Comment=Lightweight productivity editor and Markdown reader for Eloquence GNU/Linux
 Exec=elo office
 Icon=document-properties
 Terminal=false

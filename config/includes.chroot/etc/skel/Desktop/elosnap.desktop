@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Elosnap System Backup
-Comment=Create system snapshots and restore points on Eloquence OS
+Comment=Create system snapshots and restore points on Eloquence GNU/Linux
 Exec=elo snap
 Icon=drive-harddisk-system
 Terminal=false

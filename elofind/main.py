@@ -189,7 +189,7 @@ def run_gui():
     sys.exit(app.exec())
 
 def main():
-    parser = argparse.ArgumentParser(description="Elofind - Eloquence OS File Search Utility")
+    parser = argparse.ArgumentParser(description="Elofind - Eloquence GNU/Linux File Search Utility")
     parser.add_argument("-q", "--query", help="Search query string", default=None)
     parser.add_argument("-p", "--path", help="Directory path to search", default=".")
     args, unknown = parser.parse_known_args()

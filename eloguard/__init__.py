@@ -1,4 +1,4 @@
 """
-Eloguard - Eloquence OS Security & Privacy Manager
+Eloguard - Eloquence GNU/Linux Security & Privacy Manager
 """
 __version__ = "0.1.0"

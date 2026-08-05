@@ -4,7 +4,7 @@ import argparse
 import subprocess
 
 def set_theme_mode(mode):
-    print(f"🎨 Switching Eloquence OS theme mode to: '{mode.upper()}'...")
+    print(f"🎨 Switching Eloquence GNU/Linux theme mode to: '{mode.upper()}'...")
     wallpaper_path = "/usr/share/wallpapers/eloquence-dark.jpg" if mode == "dark" else "/usr/share/wallpapers/eloquence-light.png"
     gtk_theme = "Adwaita-dark" if mode == "dark" else "Adwaita"
 
@@ -30,7 +30,7 @@ def run_gui():
             self.init_ui()
 
         def init_ui(self):
-            self.setWindowTitle("Elotweak - Eloquence OS System Tweaks")
+            self.setWindowTitle("Elotweak - Eloquence GNU/Linux System Tweaks")
             self.resize(750, 520)
 
             central_widget = QWidget()
@@ -42,7 +42,7 @@ def run_gui():
             main_layout.addWidget(title_label)
 
             # Theme Group
-            theme_group = QGroupBox("Eloquence OS Desktop Theme Switcher")
+            theme_group = QGroupBox("Eloquence GNU/Linux Desktop Theme Switcher")
             theme_layout = QVBoxLayout()
             
             self.radio_dark = QRadioButton("🌙 Eloquence Dark Mode (Dark Geometric Wallpaper + Dark Theme)")
@@ -88,7 +88,7 @@ def run_gui():
         def apply_theme(self):
             mode = "dark" if self.radio_dark.isChecked() else "light"
             set_theme_mode(mode)
-            QMessageBox.information(self, "Theme Applied", f"Eloquence OS desktop theme switched to {mode.upper()} mode.")
+            QMessageBox.information(self, "Theme Applied", f"Eloquence GNU/Linux desktop theme switched to {mode.upper()} mode.")
 
     app = QApplication(sys.argv)
     window = ElotweakWindow()
@@ -96,7 +96,7 @@ def run_gui():
     sys.exit(app.exec())
 
 def main():
-    parser = argparse.ArgumentParser(description="Elotweak - Eloquence OS System Tweaks")
+    parser = argparse.ArgumentParser(description="Elotweak - Eloquence GNU/Linux System Tweaks")
     parser.add_argument("-m", "--mode", help="Theme mode: dark | light", default=None)
     args, unknown = parser.parse_known_args()
 

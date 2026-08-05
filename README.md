@@ -1,4 +1,4 @@
-# Eloquence OS & Eloquence Suite
+# Eloquence GNU/Linux & Eloquence Suite
 
 [![CI Status](https://github.com/eloquencelinux/eloquence/actions/workflows/ci.yml/badge.svg)](https://github.com/eloquencelinux/eloquence/actions/workflows/ci.yml)
 [![Debian](https://img.shields.io/badge/Debian-Trixie-red.svg)](https://www.debian.org)
@@ -8,13 +8,13 @@
 [![Architecture](https://img.shields.io/badge/Arch-x86__64%20%7C%20ARM64-orange.svg)]()
 [![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
-**Eloquence OS** is a modern, enterprise-ready, Debian-based Linux distribution engineered for high performance, security, and multi-architecture compatibility (`x86_64` amd64 and `aarch64` arm64), featuring the **Cinnamon Desktop Environment** and headless **CLI Mode**.
+**Eloquence GNU/Linux** is a modern, enterprise-ready, Debian-based Linux distribution engineered for high performance, security, and multi-architecture compatibility (`x86_64` amd64 and `aarch64` arm64), featuring the **Cinnamon Desktop Environment** and headless **CLI Mode**.
 
 ---
 
 ## ⚡ Key Features & Integrated Suite
 
-Eloquence OS comes pre-packaged with **Eloquence Suite** (`eloquence-suite`), an 8-in-1 set of custom desktop & CLI applications:
+Eloquence GNU/Linux comes pre-packaged with **Eloquence Suite** (`eloquence-suite`), an 8-in-1 set of custom desktop & CLI applications:
 
 | Utility | Command | Description |
 | :--- | :--- | :--- |

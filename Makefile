@@ -4,7 +4,7 @@ ARCH ?= amd64
 
 help:
 	@echo "====================================================="
-	@echo " Eloquence OS / Eloquence Suite Build System"
+	@echo " Eloquence GNU/Linux / Eloquence Suite Build System"
 	@echo "====================================================="
 	@echo "Available make commands:"
 	@echo "  make install         - Install Eloquence Suite (virtualenv or PEP 668 system mode)"

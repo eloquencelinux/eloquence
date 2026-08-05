@@ -8,13 +8,13 @@ windowSize:              800px,520px
 windowPlacement:         center
 
 strings:
-    productName:         "Eloquence OS"
+    productName:         "Eloquence GNU/Linux"
     shortProductName:    "Eloquence"
     version:             "2026.1"
     shortVersion:        "2026.1"
-    versionedName:       "Eloquence OS 2026.1"
+    versionedName:       "Eloquence GNU/Linux 2026.1"
     shortVersionedName:  "Eloquence 2026.1"
-    bootloaderEntryName: "Eloquence OS"
+    bootloaderEntryName: "Eloquence GNU/Linux"
     productUrl:          "https://github.com/eloquencelinux/eloquence"
     supportUrl:          "https://github.com/eloquencelinux/eloquence/issues"
     knownIssuesUrl:      "https://github.com/eloquencelinux/eloquence/issues"

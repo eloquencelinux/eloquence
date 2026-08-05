@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Elotweak System & Themes
-Comment=Switch Light/Dark themes and power performance profiles on Eloquence OS
+Comment=Switch Light/Dark themes and power performance profiles on Eloquence GNU/Linux
 Exec=elo tweak
 Icon=preferences-desktop-theme
 Terminal=false

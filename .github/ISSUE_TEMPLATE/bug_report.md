@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve Eloquence OS
+about: Create a report to help us improve Eloquence GNU/Linux
 title: '[BUG] '
 labels: bug
 assignees: ''
@@ -22,7 +22,7 @@ A clear and concise description of what you expected to happen.
 
 **Environment (please complete the following information):**
  - Architecture: [e.g. x86_64, arm64]
- - System Version: [e.g. Eloquence OS 2026.1]
+ - System Version: [e.g. Eloquence GNU/Linux 2026.1]
  - Component: [e.g. elovirt, elofind, elooffice, eloapps, live-build]
 
 **Additional context**

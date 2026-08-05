@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       release_name:
-        description: 'Release Name / Version (e.g., Eloquence OS 2026.1)'
+        description: 'Release Name / Version (e.g., Eloquence GNU/Linux 2026.1)'
         required: false
-        default: 'Eloquence OS Release'
+        default: 'Eloquence GNU/Linux Release'
 
 jobs:
   build-and-publish:

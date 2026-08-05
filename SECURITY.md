@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-The following versions of Eloquence OS are currently supported with security updates:
+The following versions of Eloquence GNU/Linux are currently supported with security updates:
 
 | Version | Supported |
 | ------- | --------- |
@@ -11,7 +11,7 @@ The following versions of Eloquence OS are currently supported with security upd
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability within Eloquence OS or Eloquence Suite, please report it responsibly by contacting the maintainers directly or opening a confidential issue.
+If you discover a security vulnerability within Eloquence GNU/Linux or Eloquence Suite, please report it responsibly by contacting the maintainers directly or opening a confidential issue.
 
 Please include:
 - A description of the vulnerability and its potential impact.

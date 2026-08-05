@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Elovirt Virtualization Manager
-Comment=Manage QEMU/KVM Virtual Machines on Eloquence OS
+Comment=Manage QEMU/KVM Virtual Machines on Eloquence GNU/Linux
 Exec=elo virt
 Icon=computer-virtual
 Terminal=false

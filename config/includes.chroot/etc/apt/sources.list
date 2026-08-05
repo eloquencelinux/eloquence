@@ -1,5 +1,5 @@
 # ===================================================================
-# Eloquence OS Package Repositories (Debian Trixie Core)
+# Eloquence GNU/Linux Package Repositories (Debian Trixie Core)
 # ===================================================================
 
 deb http://deb.debian.org/debian trixie main contrib non-free non-free-firmware

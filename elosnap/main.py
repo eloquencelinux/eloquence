@@ -33,7 +33,7 @@ def run_gui():
             self.init_ui()
 
         def init_ui(self):
-            self.setWindowTitle("Elosnap - Eloquence OS System Backup & Snapshots")
+            self.setWindowTitle("Elosnap - Eloquence GNU/Linux System Backup & Snapshots")
             self.resize(750, 500)
 
             central_widget = QWidget()
@@ -101,7 +101,7 @@ def run_gui():
     sys.exit(app.exec())
 
 def main():
-    parser = argparse.ArgumentParser(description="Elosnap - Eloquence OS Snapshot Manager")
+    parser = argparse.ArgumentParser(description="Elosnap - Eloquence GNU/Linux Snapshot Manager")
     parser.add_argument("-a", "--action", help="Action: create | list | restore", default=None)
     args, unknown = parser.parse_known_args()
 

@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea or feature for Eloquence OS
+about: Suggest an idea or feature for Eloquence GNU/Linux
 title: '[FEATURE] '
 labels: enhancement
 assignees: ''

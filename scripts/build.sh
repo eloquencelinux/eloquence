@@ -27,7 +27,7 @@ ISO_NAME="eloquence-${ARCH}.iso"
 WORK_DIR="build_work_${ARCH}"
 
 echo "============================================================"
-echo " Building Eloquence OS Professional Live ISO [${ARCH}]"
+echo " Building Eloquence GNU/Linux Professional Live ISO [${ARCH}]"
 echo "============================================================"
 
 mkdir -p "${OUTPUT_DIR}"

@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Eloapps App Center
-Comment=Discover, install, and manage applications on Eloquence OS
+Comment=Discover, install, and manage applications on Eloquence GNU/Linux
 Exec=elo apps
 Icon=system-software-install
 Terminal=false

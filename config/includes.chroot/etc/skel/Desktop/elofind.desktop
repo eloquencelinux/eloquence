@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Elofind File Finder
-Comment=High-speed file search and inspection utility for Eloquence OS
+Comment=High-speed file search and inspection utility for Eloquence GNU/Linux
 Exec=elo find
 Icon=system-search
 Terminal=false

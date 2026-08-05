@@ -1,6 +1,6 @@
-# Contributing to Eloquence OS
+# Contributing to Eloquence GNU/Linux
 
-Thank you for your interest in contributing to **Eloquence OS**! We welcome bug reports, feature requests, documentation improvements, and code contributions.
+Thank you for your interest in contributing to **Eloquence GNU/Linux**! We welcome bug reports, feature requests, documentation improvements, and code contributions.
 
 ---
 
@@ -28,7 +28,7 @@ Thank you for your interest in contributing to **Eloquence OS**! We welcome bug 
 
 ## 🚀 Building Live ISOs
 
-Eloquence OS supports dual-architecture builds (`amd64` and `arm64`):
+Eloquence GNU/Linux supports dual-architecture builds (`amd64` and `arm64`):
 
 ```bash
 # Build x86_64 / amd64 ISO
