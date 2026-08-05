@@ -17,8 +17,11 @@ elif [ "$HOST_ARCH" = "aarch64" ]; then
 fi
 
 IMAGE_TYPE="iso-hybrid"
+BOOTLOADER="syslinux,grub-efi"
+
 if [ "$TARGET_ARCH" = "arm64" ]; then
-    IMAGE_TYPE="hdd"
+    IMAGE_TYPE="iso-hybrid"
+    BOOTLOADER="grub-efi"
 fi
 
 QEMU_ARCH="${TARGET_ARCH}"
@@ -30,6 +33,7 @@ fi
 
 echo "[INFO] Host Architecture:   ${HOST_ARCH}"
 echo "[INFO] Target Architecture: ${TARGET_ARCH} (${IMAGE_TYPE})"
+echo "[INFO] Bootloader Target:   ${BOOTLOADER}"
 
 if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
     echo "[INFO] Enabling cross-architecture QEMU static bootstrapping (qemu-${QEMU_ARCH}-static)..."
@@ -38,6 +42,7 @@ if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
         --architectures "${TARGET_ARCH}" \
         --linux-flavours "${TARGET_ARCH}" \
         --binary-images "${IMAGE_TYPE}" \
+        --bootloaders "${BOOTLOADER}" \
         --archive-areas "main contrib non-free non-free-firmware" \
         --bootstrap-qemu-arch "${TARGET_ARCH}" \
         --bootstrap-qemu-static "qemu-${QEMU_ARCH}-static" \
@@ -49,6 +54,7 @@ else
         --architectures "${TARGET_ARCH}" \
         --linux-flavours "${TARGET_ARCH}" \
         --binary-images "${IMAGE_TYPE}" \
+        --bootloaders "${BOOTLOADER}" \
         --archive-areas "main contrib non-free non-free-firmware" \
         --apt-recommends false \
         "${@}"
