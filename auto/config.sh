@@ -34,6 +34,7 @@ fi
 echo "[INFO] Host Architecture:   ${HOST_ARCH}"
 echo "[INFO] Target Architecture: ${TARGET_ARCH} (${IMAGE_TYPE})"
 echo "[INFO] Bootloader Target:   ${BOOTLOADER}"
+echo "[INFO] Installer Mode:     Live + Calamares OS Installer"
 
 if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
     echo "[INFO] Enabling cross-architecture QEMU static bootstrapping (qemu-${QEMU_ARCH}-static)..."
@@ -43,6 +44,7 @@ if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
         --linux-flavours "${TARGET_ARCH}" \
         --binary-images "${IMAGE_TYPE}" \
         --bootloaders "${BOOTLOADER}" \
+        --debian-installer live \
         --archive-areas "main contrib non-free non-free-firmware" \
         --bootstrap-qemu-arch "${TARGET_ARCH}" \
         --bootstrap-qemu-static "qemu-${QEMU_ARCH}-static" \
@@ -55,6 +57,7 @@ else
         --linux-flavours "${TARGET_ARCH}" \
         --binary-images "${IMAGE_TYPE}" \
         --bootloaders "${BOOTLOADER}" \
+        --debian-installer live \
         --archive-areas "main contrib non-free non-free-firmware" \
         --apt-recommends false \
         "${@}"
