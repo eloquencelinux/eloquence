@@ -1,0 +1,3 @@
+# Eloquence OS Live Session Passwordless Sudo
+eloquence ALL=(ALL) NOPASSWD: ALL
+user ALL=(ALL) NOPASSWD: ALL
