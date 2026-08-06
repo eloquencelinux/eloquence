@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  eloquence-builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: eloquence-builder:latest
+    container_name: eloquence-iso-builder
+    privileged: true
+    volumes:
+      - .:/build
+      - /dev:/dev
+    command: make build-iso-x64

@@ -5,6 +5,7 @@
 [![Desktop](https://img.shields.io/badge/Desktop-Cinnamon-purple.svg)](https://projects.linuxmint.com/cinnamon/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org)
 [![PyQt6](https://img.shields.io/badge/GUI-PyQt6-green.svg)](https://www.riverbankcomputing.com)
+[![Docker](https://img.shields.io/badge/Docker-Containerized-blue.svg)]()
 [![Architecture](https://img.shields.io/badge/Arch-x86__64%20%7C%20ARM64-orange.svg)]()
 [![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
@@ -14,10 +15,11 @@
 
 ## ⚡ Key Features & Integrated Suite
 
-Eloquence GNU/Linux comes pre-packaged with **Eloquence Suite** (`eloquence-suite`), an 8-in-1 set of custom desktop & CLI applications:
+Eloquence GNU/Linux comes pre-packaged with **Eloquence Suite** (`eloquence-suite`), a 9-in-1 set of custom desktop & CLI applications:
 
 | Utility | Command | Description |
 | :--- | :--- | :--- |
+| **Elowelcome**| `elo welcome`| First-Run Welcome Wizard & Quick System Setup. |
 | **Elovirt** | `elo virt` | Virtualization manager for QEMU/KVM with dynamic x64/ARM64 binary selection. |
 | **Elofind** | `elo find` | High-speed file search utility supporting GUI & CLI filters (`-q`, `-p`). |
 | **Elooffice** | `elo office` | Lightweight document editor with Rich Text, Markdown reader, and PDF/HTML export. |
@@ -29,26 +31,24 @@ Eloquence GNU/Linux comes pre-packaged with **Eloquence Suite** (`eloquence-suit
 
 ---
 
-## 💻 Central CLI Interface (`elo`)
+## 🐳 Containerized Docker Build Guide
+
+Build ISOs anywhere (Ubuntu, Debian, macOS, Fedora, Arch) without host dependency setup:
 
 ```bash
-# Launch any of the 8 suite applications:
-elo virt
-elo find
-elo office
-elo apps
-elo guard
-elo tweak
-elo snap
-elo web
+# Build x86_64 / amd64 ISO via Docker:
+make docker-iso-x64
 
-# Help
-elo help
+# Build ARM64 / aarch64 ISO via Docker:
+make docker-iso-arm64
+
+# Or using Docker Compose directly:
+docker-compose up --build
 ```
 
 ---
 
-## 🏗️ Build Guide (x86_64 & ARM64)
+## 🏗️ Native Build Guide (x86_64 & ARM64)
 
 ```bash
 # Install dependencies in editable mode

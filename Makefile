@@ -1,4 +1,4 @@
-.PHONY: help install clean clean-build build-iso build-iso-x64 build-iso-arm64 deb test lint
+.PHONY: help install clean clean-build build-iso build-iso-x64 build-iso-arm64 deb test lint docker-build docker-iso-x64 docker-iso-arm64
 
 ARCH ?= amd64
 
@@ -7,15 +7,18 @@ help:
 	@echo " Eloquence GNU/Linux / Eloquence Suite Build System"
 	@echo "====================================================="
 	@echo "Available make commands:"
-	@echo "  make install         - Install Eloquence Suite (virtualenv or PEP 668 system mode)"
-	@echo "  make build-iso       - Build Live ISO for target ARCH (default: amd64)"
-	@echo "  make build-iso-x64   - Build Live ISO for x86_64 / amd64"
-	@echo "  make build-iso-arm64 - Build Live ISO for ARM64 / aarch64"
-	@echo "  make deb             - Build native Debian package (.deb) using dpkg-buildpackage"
-	@echo "  make test            - Run Python syntax checks for all Eloquence Suite modules"
-	@echo "  make lint            - Run shell script syntax linters"
-	@echo "  make clean           - Clean build artifacts, venv, pycache, and chroot locks"
-	@echo "  make clean-build     - Purge live-build chroot and cache locks (lb clean --purge)"
+	@echo "  make install           - Install Eloquence Suite (virtualenv or PEP 668 system mode)"
+	@echo "  make build-iso         - Build Live ISO for target ARCH (default: amd64)"
+	@echo "  make build-iso-x64     - Build Live ISO for x86_64 / amd64"
+	@echo "  make build-iso-arm64   - Build Live ISO for ARM64 / aarch64"
+	@echo "  make docker-build      - Build Docker container image for build environment"
+	@echo "  make docker-iso-x64    - Build x86_64 ISO inside Docker container"
+	@echo "  make docker-iso-arm64  - Build ARM64 ISO inside Docker container"
+	@echo "  make deb               - Build native Debian package (.deb) using dpkg-buildpackage"
+	@echo "  make test              - Run Python syntax checks for all Eloquence Suite modules"
+	@echo "  make lint              - Run shell script syntax linters"
+	@echo "  make clean             - Clean build artifacts, venv, pycache, and chroot locks"
+	@echo "  make clean-build       - Purge live-build chroot and cache locks (lb clean --purge)"
 	@echo "====================================================="
 
 install:
@@ -40,6 +43,18 @@ build-iso-x64:
 
 build-iso-arm64:
 	$(MAKE) build-iso ARCH=arm64
+
+docker-build:
+	@echo "===> Building Docker container image (eloquence-builder:latest)..."
+	docker build -t eloquence-builder:latest .
+
+docker-iso-x64: docker-build
+	@echo "===> Building x86_64 ISO inside Docker container..."
+	docker run --privileged --rm -v $(shell pwd):/build eloquence-builder:latest "make build-iso-x64"
+
+docker-iso-arm64: docker-build
+	@echo "===> Building ARM64 ISO inside Docker container..."
+	docker run --privileged --rm -v $(shell pwd):/build eloquence-builder:latest "make build-iso-arm64"
 
 deb:
 	@echo "Building native Debian package (.deb)..."
