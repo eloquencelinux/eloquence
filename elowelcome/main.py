@@ -38,7 +38,7 @@ def run_gui():
             title_box = QVBoxLayout()
             title_label = QLabel("⚡ Welcome to Eloquence GNU/Linux")
             title_label.setStyleSheet("font-size: 24px; font-weight: bold; color: #3aafa9;")
-            sub_label = QLabel("Enterprise-grade, high-performance Debian distribution with Cinnamon Desktop & 8-in-1 Suite.")
+            sub_label = QLabel("Enterprise-grade, high-performance Linux distribution with Cinnamon Desktop & 8-in-1 Suite.")
             sub_label.setStyleSheet("color: #a0aab2; font-size: 13px;")
 
             title_box.addWidget(title_label)

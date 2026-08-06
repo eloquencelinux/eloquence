@@ -38,7 +38,7 @@ class ElovirtWindow(QMainWindow):
         self.vm_list = QListWidget()
         self.vm_list.addItems([
             "Eloquence-OS-Live (x64 ISO)",
-            "Development-Node-01 (Debian arm64)",
+            "Development-Node-01 (Eloquence arm64)",
             "Test-Sandbox-VM"
         ])
         vm_layout.addWidget(self.vm_list)

@@ -122,7 +122,7 @@ class EloappsWindow(QMainWindow):
                 QMessageBox.information(
                     self,
                     "Installation Triggered",
-                    f"Executing: {cmd}\n(Root authentication prompt will appear on Debian system)."
+                    f"Executing: {cmd}\n(Root authentication prompt will appear on Eloquence GNU/Linux system)."
                 )
             except Exception as e:
                 QMessageBox.critical(self, "Installation Error", str(e))
