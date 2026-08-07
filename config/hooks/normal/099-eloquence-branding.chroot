@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-echo "[BUILD HOOK] Applying 100% Eloquence GNU/Linux Branding, Lockscreen, Cinnamon Desktop & System Settings..."
+echo "[BUILD HOOK] Applying 100% Eloquence GNU/Linux Branding, Lockscreen, Boot Splash & Calamares Settings..."
 
 # Create nopasswdlogin group if not exists
 groupadd -r nopasswdlogin 2>/dev/null || true
@@ -87,6 +87,14 @@ if [ -d "/etc/calamares/branding/eloquence" ]; then
     cp -r /etc/calamares/branding/eloquence/* /usr/share/calamares/branding/eloquence/ 2>/dev/null || true
     cp -r /etc/calamares/branding/eloquence/* /usr/share/calamares/branding/debian/ 2>/dev/null || true
 fi
+
+# Direct Calamares Installer autostart trigger when chosen from boot menu
+cat << 'EOF' > /etc/profile.d/eloquence-calamares-autostart.sh
+if grep -q "eloquence.autostart=calamares" /proc/cmdline 2>/dev/null; then
+    (sleep 3 && sudo -E calamares) &
+fi
+EOF
+chmod +x /etc/profile.d/eloquence-calamares-autostart.sh
 
 # Ensure strict permissions on sudoers.d/live file
 if [ -f "/etc/sudoers.d/live" ]; then
