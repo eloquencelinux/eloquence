@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Elofind File Finder
-Comment=High-speed file search and inspection utility for Eloquence GNU/Linux
-Exec=elo find
-Icon=system-search
-Terminal=false
-Type=Application
-Categories=Utility;System;Qt;
-Keywords=search;find;files;locate;eloquence;

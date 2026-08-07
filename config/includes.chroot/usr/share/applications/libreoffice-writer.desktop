@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Icon=libreoffice-writer
+Type=Application
+Categories=Office;WordProcessor;
+Exec=libreoffice --writer %U
+MimeType=application/vnd.oasis.opendocument.text;application/msword;application/vnd.openxmlformats-officedocument.wordprocessingml.document;
+Name=LibreOffice Writer
+GenericName=Word Processor
+Comment=Create and edit text and graphics in letters, reports, documents and Web pages by using Writer.
+StartupNotify=true

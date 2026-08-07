@@ -1,33 +1,26 @@
-# Eloquence GNU/Linux & Eloquence Suite
+# Eloquence GNU/Linux
 
 [![CI Status](https://github.com/eloquencelinux/eloquence/actions/workflows/ci.yml/badge.svg)](https://github.com/eloquencelinux/eloquence/actions/workflows/ci.yml)
 [![Debian](https://img.shields.io/badge/Debian-Trixie-red.svg)](https://www.debian.org)
 [![Desktop](https://img.shields.io/badge/Desktop-Cinnamon-purple.svg)](https://projects.linuxmint.com/cinnamon/)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org)
-[![PyQt6](https://img.shields.io/badge/GUI-PyQt6-green.svg)](https://www.riverbankcomputing.com)
 [![Docker](https://img.shields.io/badge/Docker-Containerized-blue.svg)]()
 [![Architecture](https://img.shields.io/badge/Arch-x86__64%20%7C%20ARM64-orange.svg)]()
 [![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
-**Eloquence GNU/Linux** is a modern, enterprise-ready, Debian-based Linux distribution engineered for high performance, security, and multi-architecture compatibility (`x86_64` amd64 and `aarch64` arm64), featuring the **Cinnamon Desktop Environment** and headless **CLI Mode**.
+**Eloquence GNU/Linux** is a modern, enterprise-ready Linux distribution engineered for high performance, security, and multi-architecture compatibility (`x86_64` amd64 and `aarch64` arm64), featuring the **Cinnamon Desktop Environment**, **Calamares GUI Installer**, and the standard stock Linux productivity suite.
 
 ---
 
-## ⚡ Key Features & Integrated Suite
+## ⚡ Pre-Installed Stock Applications & Utilities
 
-Eloquence GNU/Linux comes pre-packaged with **Eloquence Suite** (`eloquence-suite`), a 9-in-1 set of custom desktop & CLI applications:
-
-| Utility | Command | Description |
+| Category | Pre-installed Software | Description |
 | :--- | :--- | :--- |
-| **Elowelcome**| `elo welcome`| First-Run Welcome Wizard & Quick System Setup. |
-| **Elovirt** | `elo virt` | Virtualization manager for QEMU/KVM with dynamic x64/ARM64 binary selection. |
-| **Elofind** | `elo find` | High-speed file search utility supporting GUI & CLI filters (`-q`, `-p`). |
-| **Elooffice** | `elo office` | Lightweight document editor with Rich Text, Markdown reader, and PDF/HTML export. |
-| **Eloapps** | `elo apps` | App Center GUI for browsing, installing, and managing Debian APT packages. |
-| **Eloguard** | `elo guard` | Security & Privacy Center (Firewall, Sysctl Hardening, USB Blocking). |
-| **Elotweak** | `elo tweak` | System Tweaks & One-Click Light/Dark Mode Switcher. |
-| **Elosnap** | `elo snap` | System Restore Points & Snapshot Backup Manager. |
-| **Eloweb** | `elo web` | WebApp Creator (converts WhatsApp, Notion, ChatGPT into desktop apps). |
+| **Office & Productivity** | **LibreOffice** (Writer, Calc, Impress, Draw, Math) | Complete, professional document processing suite. |
+| **Internet & Web** | **Firefox ESR**, **Thunderbird** | Fast, privacy-respecting browser and email client. |
+| **Multimedia & Audio** | **VLC Media Player**, **Rhythmbox**, **Evince** | Universal media playback and PDF document viewing. |
+| **Graphics & Design** | **GIMP**, **Inkscape**, **Simple Scan** | Professional photo editing, vector illustration, and scanning. |
+| **System & Security** | **Timeshift**, **GParted**, **Synaptic**, **GUFW / UFW** | System snapshots, partition management, and firewall. |
+| **Virtualization** | **Virt-Manager**, **QEMU / KVM**, **Libvirt** | Native hardware-accelerated virtual machine manager. |
 
 ---
 
@@ -51,16 +44,13 @@ docker-compose up --build
 ## 🏗️ Native Build Guide (x86_64 & ARM64)
 
 ```bash
-# Install dependencies in editable mode
-make install
-
 # Build x86_64 / amd64 Live ISO (Cinnamon Desktop)
 make build-iso-x64
 
 # Build ARM64 / aarch64 Live ISO (Cinnamon Desktop)
 make build-iso-arm64
 
-# Run test suite
+# Run test & configuration audit
 make test
 ```
 

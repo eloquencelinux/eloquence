@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Eloweb WebApp Creator
-Comment=Convert any website into a standalone desktop application on Eloquence GNU/Linux
-Exec=elo web
-Icon=internet-web-browser
-Terminal=false
-Type=Application
-Categories=Network;WebBrowser;Qt;
-Keywords=webapp;web;browser;chatgpt;notion;spotify;eloquence;
