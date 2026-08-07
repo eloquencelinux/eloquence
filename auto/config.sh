@@ -36,23 +36,46 @@ LIVE_BOOTAPPEND="boot=live components quiet splash live-config.username=eloquenc
 echo "[INFO] Host Architecture:   ${HOST_ARCH}"
 echo "[INFO] Target Architecture: ${TARGET_ARCH} (${IMAGE_TYPE})"
 echo "[INFO] Bootloader Target:   ${BOOTLOADER}"
-echo "[INFO] Installer Framework: Calamares GUI Installer (Debian-Installer disabled)"
+echo "[INFO] Installer Framework: Calamares GUI Installer (Debian-Installer: none)"
 
 if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
-    echo "[INFO] Enabling cross-architecture QEMU static bootstrapping (qemu-${QEMU_ARCH}-static)..."
-    lb config \
-        --distribution trixie \
-        --architectures "${TARGET_ARCH}" \
-        --linux-flavours "${TARGET_ARCH}" \
-        --binary-images "${IMAGE_TYPE}" \
-        --bootloaders "${BOOTLOADER}" \
-        --bootappend-live "${LIVE_BOOTAPPEND}" \
-        --debian-installer false \
-        --archive-areas "main contrib non-free non-free-firmware" \
-        --bootstrap-qemu-arch "${TARGET_ARCH}" \
-        --bootstrap-qemu-static "qemu-${QEMU_ARCH}-static" \
-        --apt-recommends false \
-        "${@}"
+    QEMU_STATIC_BIN="/usr/bin/qemu-${QEMU_ARCH}-static"
+    if [ ! -f "${QEMU_STATIC_BIN}" ]; then
+        echo "[INFO] Installing cross-architecture emulator (qemu-user-static) for ${TARGET_ARCH}..."
+        if command -v apt-get >/dev/null 2>&1 && [ "$(id -u)" -eq 0 ]; then
+            apt-get update -y && apt-get install -y --no-install-recommends qemu-user-static binfmt-support 2>/dev/null || true
+        fi
+    fi
+
+    if [ -f "${QEMU_STATIC_BIN}" ]; then
+        echo "[INFO] Enabling cross-architecture QEMU static bootstrapping (qemu-${QEMU_ARCH}-static)..."
+        lb config \
+            --distribution trixie \
+            --architectures "${TARGET_ARCH}" \
+            --linux-flavours "${TARGET_ARCH}" \
+            --binary-images "${IMAGE_TYPE}" \
+            --bootloaders "${BOOTLOADER}" \
+            --bootappend-live "${LIVE_BOOTAPPEND}" \
+            --debian-installer none \
+            --archive-areas "main contrib non-free non-free-firmware" \
+            --bootstrap-qemu-arch "${TARGET_ARCH}" \
+            --bootstrap-qemu-static "qemu-${QEMU_ARCH}-static" \
+            --apt-recommends false \
+            "${@}"
+    else
+        echo "[WARNING] qemu-${QEMU_ARCH}-static not found. Configuring without QEMU bootstrap hook..."
+        lb config \
+            --distribution trixie \
+            --architectures "${TARGET_ARCH}" \
+            --linux-flavours "${TARGET_ARCH}" \
+            --binary-images "${IMAGE_TYPE}" \
+            --bootloaders "${BOOTLOADER}" \
+            --bootappend-live "${LIVE_BOOTAPPEND}" \
+            --debian-installer none \
+            --archive-areas "main contrib non-free non-free-firmware" \
+            --apt-recommends false \
+            "${@}"
+    fi
 else
     lb config \
         --distribution trixie \
@@ -61,7 +84,7 @@ else
         --binary-images "${IMAGE_TYPE}" \
         --bootloaders "${BOOTLOADER}" \
         --bootappend-live "${LIVE_BOOTAPPEND}" \
-        --debian-installer false \
+        --debian-installer none \
         --archive-areas "main contrib non-free non-free-firmware" \
         --apt-recommends false \
         "${@}"

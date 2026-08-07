@@ -26,8 +26,12 @@ OUTPUT_DIR="build_output"
 ISO_NAME="eloquence-${ARCH}.iso"
 WORK_DIR="build_work_${ARCH}"
 
+HOST_ARCH="$(dpkg --print-architecture 2>/dev/null || uname -m)"
+if [ "$HOST_ARCH" = "x86_64" ]; then HOST_ARCH="amd64"; elif [ "$HOST_ARCH" = "aarch64" ]; then HOST_ARCH="arm64"; fi
+
 echo "============================================================"
 echo " Building Eloquence GNU/Linux Professional Live ISO [${ARCH}]"
+echo " Host Arch: ${HOST_ARCH} | Target Arch: ${ARCH}"
 echo "============================================================"
 
 mkdir -p "${OUTPUT_DIR}"
@@ -38,6 +42,18 @@ if command -v lb >/dev/null 2>&1; then
     if [ "$(id -u)" -eq 0 ]; then
         echo "===> Cleaning stale chroot and build locks..."
         lb clean --purge 2>/dev/null || true
+
+        # If cross-building, ensure QEMU static emulator is available
+        if [ "${ARCH}" != "${HOST_ARCH}" ]; then
+            QEMU_NAME="x86_64"
+            if [ "${ARCH}" = "arm64" ]; then QEMU_NAME="aarch64"; fi
+            if [ ! -f "/usr/bin/qemu-${QEMU_NAME}-static" ]; then
+                echo "[INFO] Cross-architecture build detected (${HOST_ARCH} -> ${ARCH}). Installing qemu-user-static..."
+                if command -v apt-get >/dev/null 2>&1; then
+                    apt-get update -y && apt-get install -y --no-install-recommends qemu-user-static binfmt-support 2>/dev/null || true
+                fi
+            fi
+        fi
     fi
 
     if [ -f "./auto/config.sh" ]; then
@@ -66,7 +82,7 @@ if command -v lb >/dev/null 2>&1; then
             echo "------------------------------------------------------------"
             tail -n 30 build.log 2>/dev/null || true
             echo "------------------------------------------------------------"
-            echo "[TIP] If cross-building (e.g. ARM64 on x86_64 host), install QEMU static emulators:"
+            echo "[TIP] If cross-building (e.g. x86_64 on ARM64 or vice versa):"
             echo "      apt-get update && apt-get install -y qemu-user-static binfmt-support"
             echo "============================================================"
             exit 1
