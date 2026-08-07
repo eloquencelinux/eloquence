@@ -36,24 +36,37 @@ echo "============================================================"
 
 mkdir -p "${OUTPUT_DIR}"
 
+# ---------------------------------------------------------------
+# Fix qemu-user-static paths for Debian Trixie (live-build compat)
+# Debian Trixie moved qemu static binaries to new locations but
+# live-build still expects /usr/bin/qemu-<arch>-static
+# ---------------------------------------------------------------
+if [ "$(id -u)" -eq 0 ] && [ "${ARCH}" != "${HOST_ARCH}" ]; then
+    for QARCH in x86_64 aarch64 arm; do
+        STATIC_PATH="/usr/bin/qemu-${QARCH}-static"
+        if [ ! -f "${STATIC_PATH}" ]; then
+            # Search all known Debian Trixie locations
+            for CANDIDATE in \
+                "/usr/libexec/qemu-binfmt/${QARCH}-binfmt-P" \
+                "/usr/bin/qemu-${QARCH}" \
+                "/usr/libexec/qemu-binfmt/${QARCH}" \
+                "/usr/lib/qemu/qemu-${QARCH}-static"; do
+                if [ -f "${CANDIDATE}" ]; then
+                    echo "[INFO] Symlinking ${CANDIDATE} -> ${STATIC_PATH}"
+                    ln -sf "${CANDIDATE}" "${STATIC_PATH}"
+                    break
+                fi
+            done
+        fi
+    done
+fi
+
 if command -v lb >/dev/null 2>&1; then
     echo "===> [1/3] Using Debian live-build framework..."
     
     if [ "$(id -u)" -eq 0 ]; then
         echo "===> Cleaning stale chroot and build locks..."
         lb clean --purge 2>/dev/null || true
-
-        # If cross-building, ensure QEMU static emulator is available
-        if [ "${ARCH}" != "${HOST_ARCH}" ]; then
-            QEMU_NAME="x86_64"
-            if [ "${ARCH}" = "arm64" ]; then QEMU_NAME="aarch64"; fi
-            if [ ! -f "/usr/bin/qemu-${QEMU_NAME}-static" ]; then
-                echo "[INFO] Cross-architecture build detected (${HOST_ARCH} -> ${ARCH}). Installing qemu-user-static..."
-                if command -v apt-get >/dev/null 2>&1; then
-                    apt-get update -y && apt-get install -y --no-install-recommends qemu-user-static binfmt-support 2>/dev/null || true
-                fi
-            fi
-        fi
     fi
 
     if [ -f "./auto/config.sh" ]; then
@@ -82,9 +95,6 @@ if command -v lb >/dev/null 2>&1; then
             echo "------------------------------------------------------------"
             tail -n 30 build.log 2>/dev/null || true
             echo "------------------------------------------------------------"
-            echo "[TIP] If cross-building (e.g. x86_64 on ARM64 or vice versa):"
-            echo "      apt-get update && apt-get install -y qemu-user-static binfmt-support"
-            echo "============================================================"
             exit 1
         fi
     else
