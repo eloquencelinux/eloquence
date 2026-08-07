@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+set -e
+
+echo "[BINARY HOOK] Ensuring /live/vmlinuz and /live/initrd.img exist on ISO filesystem..."
+
+if [ -d binary/live ]; then
+    cd binary/live
+
+    # If generic vmlinuz doesn't exist, link/copy the architecture-specific kernel
+    if [ ! -f vmlinuz ]; then
+        for k in vmlinuz-* linux-* Image-* vmlinux-*; do
+            if [ -f "$k" ]; then
+                echo "[INFO] Found kernel: $k -> creating vmlinuz link/copy"
+                cp -f "$k" vmlinuz 2>/dev/null || ln -sf "$k" vmlinuz || true
+                break
+            fi
+        done
+    fi
+
+    # If generic initrd.img doesn't exist, link/copy the architecture-specific initrd
+    if [ ! -f initrd.img ]; then
+        for i in initrd.img-* initrd-* initramfs-*; do
+            if [ -f "$i" ]; then
+                echo "[INFO] Found initrd: $i -> creating initrd.img link/copy"
+                cp -f "$i" initrd.img 2>/dev/null || ln -sf "$i" initrd.img || true
+                break
+            fi
+        done
+    fi
+
+    cd - >/dev/null 2>&1 || true
+fi
