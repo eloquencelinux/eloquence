@@ -38,17 +38,28 @@ echo "[INFO] Target Architecture: ${TARGET_ARCH} (${IMAGE_TYPE})"
 echo "[INFO] Bootloader Target:   ${BOOTLOADER}"
 echo "[INFO] Installer Framework: Calamares GUI Installer (Debian-Installer: none)"
 
-if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
-    QEMU_STATIC_BIN="/usr/bin/qemu-${QEMU_ARCH}-static"
-    if [ ! -f "${QEMU_STATIC_BIN}" ]; then
-        echo "[INFO] Installing cross-architecture emulator (qemu-user-static) for ${TARGET_ARCH}..."
-        if command -v apt-get >/dev/null 2>&1 && [ "$(id -u)" -eq 0 ]; then
-            apt-get update -y && apt-get install -y --no-install-recommends qemu-user-static binfmt-support 2>/dev/null || true
+# Auto-link Debian Trixie qemu-binfmt binaries to /usr/bin/ if needed
+if [ ! -f "/usr/bin/qemu-x86_64-static" ]; then
+    for p in /usr/libexec/qemu-binfmt/x86_64-binfmt-P /usr/bin/qemu-x86_64; do
+        if [ -f "$p" ]; then
+            ln -sf "$p" /usr/bin/qemu-x86_64-static 2>/dev/null || true
+            break
         fi
-    fi
+    done
+fi
 
-    if [ -f "${QEMU_STATIC_BIN}" ]; then
-        echo "[INFO] Enabling cross-architecture QEMU static bootstrapping (qemu-${QEMU_ARCH}-static)..."
+if [ ! -f "/usr/bin/qemu-aarch64-static" ]; then
+    for p in /usr/libexec/qemu-binfmt/aarch64-binfmt-P /usr/bin/qemu-aarch64; do
+        if [ -f "$p" ]; then
+            ln -sf "$p" /usr/bin/qemu-aarch64-static 2>/dev/null || true
+            break
+        fi
+    done
+fi
+
+if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
+    if [ -f "/usr/bin/qemu-${QEMU_ARCH}-static" ]; then
+        echo "[INFO] Enabling cross-architecture QEMU static bootstrapping (/usr/bin/qemu-${QEMU_ARCH}-static)..."
         lb config \
             --distribution trixie \
             --architectures "${TARGET_ARCH}" \
@@ -63,7 +74,7 @@ if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
             --apt-recommends false \
             "${@}"
     else
-        echo "[WARNING] qemu-${QEMU_ARCH}-static not found. Configuring without QEMU bootstrap hook..."
+        echo "[INFO] Cross-architecture build using host binfmt_misc kernel emulation..."
         lb config \
             --distribution trixie \
             --architectures "${TARGET_ARCH}" \
@@ -73,6 +84,7 @@ if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
             --bootappend-live "${LIVE_BOOTAPPEND}" \
             --debian-installer none \
             --archive-areas "main contrib non-free non-free-firmware" \
+            --bootstrap-qemu-arch "${TARGET_ARCH}" \
             --apt-recommends false \
             "${@}"
     fi
