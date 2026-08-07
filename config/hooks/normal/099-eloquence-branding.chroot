@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-echo "[BUILD HOOK] Applying 100% Eloquence GNU/Linux Branding, Lockscreen, Boot Splash & Calamares Settings..."
+echo "[BUILD HOOK] Applying 100% Eloquence GNU/Linux Branding, Terminal Banners & System Settings..."
 
 # Create nopasswdlogin group if not exists
 groupadd -r nopasswdlogin 2>/dev/null || true
@@ -35,7 +35,7 @@ if [ -d "/usr/share/plymouth/themes/eloquence" ]; then
     fi
 fi
 
-# Ensure /etc/os-release has Eloquence GNU/Linux branding
+# Ensure /etc/os-release has 100% Eloquence GNU/Linux branding
 if [ -f "/etc/os-release" ]; then
     cat << 'EOF' > /etc/os-release
 NAME="Eloquence GNU/Linux"
@@ -53,9 +53,28 @@ LOGO=eloquence-logo
 EOF
 fi
 
-# Ensure /etc/issue and /etc/motd
+# Ensure /etc/issue and /etc/motd terminal banners have 100% Eloquence branding
+cat << 'EOF' > /etc/motd
+===================================================================
+  ⚡ Welcome to Eloquence GNU/Linux 2026.1
+  Professional Enterprise Linux Distribution (Cinnamon Edition)
+===================================================================
+
+The programs included with the Eloquence GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Eloquence GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+EOF
+
 echo "⚡ Eloquence GNU/Linux 2026.1 (Trixie) \n \l" > /etc/issue
 echo "⚡ Eloquence GNU/Linux 2026.1 (Trixie)" > /etc/issue.net
+
+# Replace or clean up any debian update-motd scripts if present
+if [ -d "/etc/update-motd.d" ]; then
+    rm -f /etc/update-motd.d/10-uname /etc/update-motd.d/00-header 2>/dev/null || true
+fi
 
 # Update dconf database for Cinnamon Desktop wallpaper, Lockscreen and GTK Dark theme
 if command -v dconf >/dev/null 2>&1; then
@@ -106,4 +125,4 @@ if [ -d "/etc/skel/Desktop" ]; then
     chmod +x /etc/skel/Desktop/*.desktop 2>/dev/null || true
 fi
 
-echo "[BUILD HOOK] Eloquence GNU/Linux Cinnamon branding, single live user, Lockscreen & Plymouth applied successfully."
+echo "[BUILD HOOK] Eloquence GNU/Linux terminal banners & system settings applied successfully."

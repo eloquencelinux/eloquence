@@ -1,10 +1,11 @@
 ===================================================================
   ⚡ Welcome to Eloquence GNU/Linux 2026.1
-  Professional Enterprise Linux Distribution (Eloquence Core)
-  
-  Eloquence Suite Tools:
-   - Virt Manager:   elo virt
-   - File Search:    elo find
-   - Document Editor:elo office
-   - App Center:     elo apps
+  Professional Enterprise Linux Distribution (Cinnamon Edition)
 ===================================================================
+
+The programs included with the Eloquence GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Eloquence GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
